@@ -19,7 +19,7 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
              boolean setMsimAudioParams = SystemProperties
                      .getBoolean("ro.multisim.set_audio_params", false);
 +            boolean setRealcallAudioParams = SystemProperties
-+                    .getBoolean("ro.telephony.samsung.realcall", false);		
++                    .getBoolean("ro.telephony.samsung.realcall", false);
              Call call = mCallAudioManager.getForegroundCall();
  
              mAudioManager.requestAudioFocusForCall(AudioManager.STREAM_VOICE_CALL,
@@ -33,117 +33,16 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
              }
  
              mAudioManager.setMode(AudioManager.MODE_IN_CALL);
-@@ -364,15 +374,25 @@
+@@ -364,9 +374,10 @@
  
          private int getPhoneId(Call call) {
              if (call.getTargetPhoneAccount() != null) {
 -                PhoneAccountHandle account = call.getTargetPhoneAccount();
++                PhoneAccountHandle account = call.getAccountHandle();
++                int phoneId = 0;
                  try {
 -                    int index = Integer.parseInt(account.getId());
--                    int phoneId = SubscriptionManager.getPhoneId(index);
-+                    int phoneId = 0;
-+                    SubscriptionInfo SimInfo1 = SubscriptionManager.getActiveSubscriptionInfoForSimSlotIndex(0);
-+                    SubscriptionInfo SimInfo2 = SubscriptionManager.getActiveSubscriptionInfoForSimSlotIndex(1);
-+                    long ID1 = Long.valueOf(SimInfo1.getSubscriptionId);
-+                    long ID2 = Long.valueOf(SimInfo2.getSubscriptionId);
-+                    long phone = Long.valueOf(call.getTargetPhoneAccount().getId());
-+                    if(ID1 == phone){
-+                       phoneId = 0;
-+                       Log.i(LOG_TAG, "SIM CALL state phoneId = 0");
-+                    }else if(ID2 == phone){
-+                       phoneId = 1;
-+                       Log.i(LOG_TAG, "SIM CALL state phoneId = 1");
-+                    }
++                    int index = call.getSubId(account);
+                     int phoneId = SubscriptionManager.getPhoneId(index);
                      if (SubscriptionManager.isValidPhoneId(phoneId)) {
                          return phoneId;
-                     }
-                 } catch (NumberFormatException e) {
--                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value " + account.getId());
-+                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value " + call.getTargetPhoneAccount().getId());
-                 }
-             }
-             return -1;
-
-diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java
---- a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java	Mon Jun 20 17:28:46 2016
-+++ b/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java	Mon Jun 27 10:45:01 2016
-@@ -1066,14 +1066,25 @@
-                mSpeakerPhoneOn = true;
-                Log.d(LOGTAG, "Audio source set it as speaker");
-                AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_SPEAKER);
-+			   mAudioManager.setParameters("fm_mode=on");
-+               mAudioManager.setParameters("fm_radio_volume=on");
-+               mAudioManager.setParameters("FMRadioVol=0.1496235728");
-+               /* mAudioManager.setMode(AudioManager.MODE_IN_CALL); */
-+               /* mAudioManager.setSpeakerphoneOn(true); */
-            } else {
-                Log.d(LOGTAG, "Audio source set it as headset");
-                AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_NONE);
-+			   mAudioManager.setParameters("fm_mode=on");
-+               mAudioManager.setParameters("fm_radio_volume=on");
-+               mAudioManager.setParameters("FMRadioVol=0.1496235728");
-+               /* mAudioManager.setMode(AudioManager.MODE_IN_CALL); */
-+               /* mAudioManager.setSpeakerphoneOn(false); */
-            }
-        } else {
-                Log.d(LOGTAG, "A2DP is connected, set audio source to A2DP HS");
-                AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_SPEAKER);
-                mSpeakerPhoneOn = true;
-+			   /* mAudioManager.setSpeakerphoneOn(true); */
-        }
- 
-        mPlaybackInProgress = true;
-@@ -1090,6 +1101,8 @@
-        Log.d(LOGTAG, "In stopFM");
-        configureAudioDataPath(false);
-        mPlaybackInProgress = false;
-+	   mAudioManager.setParameters("fm_radio_mute=1");
-+       mAudioManager.setParameters("fm_mode=off");
-        try {
-            if ((mServiceInUse) && (mCallbacks != null))
-                mCallbacks.onFmAudioPathStopped();
-@@ -1539,6 +1552,7 @@
-       public void run() {
-          Log.v(LOGTAG, "Disabling Speaker");
-          AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_NONE);
-+		 /* mAudioManager.setSpeakerphoneOn(false); */
-       }
-    };
- 
-@@ -2257,6 +2271,7 @@
-       if ( mSpeakerPhoneOn) {
-           mSpeakerPhoneOn = false;
-           AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_NONE);
-+		  /* mAudioManager.setSpeakerphoneOn(false); */
-       }
-    }
- 
-@@ -2376,10 +2391,12 @@
-             } else {
-                 Log.d(LOGTAG, "A2DP is not connected, force none");
-                 AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_NONE);
-+				/* mAudioManager.setSpeakerphoneOn(false); */
-             }
-        } else if (speakerOn == true) {
-            Log.d(LOGTAG, "enabling speaker");
-            AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_SPEAKER);
-+		   /* mAudioManager.setSpeakerphoneOn(true); */
-        }
- 
-        Log.d(LOGTAG, "speakerOn completed:" + speakerOn);
-@@ -2480,6 +2497,7 @@
-       {
-          mMuted = true;
-          audioManager.setParameters("fm_mute=1");
-+		 audioManager.setParameters("fm_radio_mute=1");
-          if (mAudioTrack != null)
-              mAudioTrack.setVolume(0.0f);
-       }
-@@ -2502,6 +2520,7 @@
-       {
-          mMuted = false;
-          audioManager.setParameters("fm_mute=0");
-+		 audioManager.setParameters("fm_radio_mute=0");
-          if (mAudioTrack != null)
-              mAudioTrack.setVolume(1.0f);
-if (mResumeAfterCall)
