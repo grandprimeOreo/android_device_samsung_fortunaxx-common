@@ -1,18 +1,17 @@
 #
-# Copyright 2016 The CyanogenMod Project
+# Copyright (C) 2016 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 # Inherit from samsung qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk 
@@ -29,15 +28,10 @@ TARGET_BOARD_PLATFORM_GPU       := qcom-adreno306
 TARGET_BOOTLOADER_BOARD_NAME    := MSM8916
 
 # Arch
-#TARGET_GLOBAL_CFLAGS            += -mfpu=neon -mfloat-abi=softfp
-#TARGET_GLOBAL_CPPFLAGS          += -mfpu=neon -mfloat-abi=softfp
 TARGET_CPU_VARIANT              := cortex-a53
 TARGET_CPU_CORTEX_A53           := true
 ARCH_ARM_HAVE_TLS_REGISTER      := true
 ENABLE_CPUSETS                  := true
-
-# Board CFLAGS
-#COMMON_GLOBAL_CFLAGS += -DQCOM_BSP
 
 # Qcom
 TARGET_PLATFORM_DEVICE_BASE          := /devices/soc.0/
@@ -49,15 +43,17 @@ TARGET_USES_NEW_ION_API              := true
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Kernel
-TARGET_KERNEL_ARCH               := arm
-BOARD_DTBTOOL_ARG                := -2
-BOARD_KERNEL_BASE                := 0x80000000
-BOARD_KERNEL_CMDLINE         := console=null androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive
-BOARD_RAMDISK_OFFSET         := 0x02000000
-BOARD_KERNEL_TAGS_OFFSET     := 0x01e00000
-BOARD_KERNEL_PAGESIZE        := 2048
-BOARD_KERNEL_SEPARATED_DT    := true
-TARGET_KERNEL_SOURCE             := kernel/samsung/fortunaxx
+TARGET_KERNEL_ARCH                 := arm
+BOARD_DTBTOOL_ARG                  := -2
+BOARD_KERNEL_BASE                  := 0x80000000
+BOARD_KERNEL_CMDLINE               := console=null androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci
+BOARD_RAMDISK_OFFSET               := 0x02000000
+BOARD_KERNEL_TAGS_OFFSET           := 0x01e00000
+BOARD_KERNEL_PAGESIZE              := 2048
+BOARD_KERNEL_SEPARATED_DT          := true
+TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
 
 # Partition sizes
 TARGET_USERIMAGES_USE_EXT4          := true
@@ -109,6 +105,9 @@ PROTOBUF_SUPPORTED                   := true
 # Fonts
 EXTENDED_FONT_FOOTPRINT              := true
 
+# malloc implementation
+MALLOC_IMPL                          := dlmalloc
+
 # Audio
 BOARD_USES_ALSA_AUDIO                := true
 USE_CUSTOM_AUDIO_POLICY              := 1
@@ -151,13 +150,12 @@ TARGET_PROVIDES_LIBLIGHT              := true
 
 # Media
 TARGET_QCOM_MEDIA_VARIANT             := caf
-#TARGET_ENABLE_QC_AV_ENHANCEMENTS      := true
 
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true
-TARGET_USES_OVERLAY 		          := true
-TARGET_HARDWARE_3D		              := false
-TARGET_HAVE_HDMI_OUT 		          := false
+TARGET_USES_OVERLAY                   := true
+TARGET_HARDWARE_3D                    := false
+TARGET_HAVE_HDMI_OUT                  := false
 USE_OPENGL_RENDERER                   := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS       := 3
 MAX_EGL_CACHE_KEY_SIZE                := 12*1024
@@ -165,8 +163,8 @@ MAX_EGL_CACHE_SIZE                    := 2048*1024
 OVERRIDE_RS_DRIVER                    := libRSDriver.so
 
 # Boot animation
-TARGET_SCREEN_WIDTH                   := 540
-TARGET_SCREEN_HEIGHT                  := 960
+TARGET_SCREEN_WIDTH                  := 540
+TARGET_SCREEN_HEIGHT                 := 960
 
 # Recovery
 TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/fstab.qcom
@@ -179,19 +177,17 @@ BOARD_RECOVERY_SWIPE                 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT       := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS                  := true
 
-# Logging
-TARGET_USES_LOGD                    := false
-
-TARGET_SKIP_PRODUCT_DEVICE          := true
+#Use dlmalloc instead of jemalloc for mallocs
+#MALLOC_SVELTE                       := true
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS      := $(LOCAL_PATH)
+TARGET_RELEASETOOLS_EXTENSIONS       := $(LOCAL_PATH)
 
 # Misc.
-TARGET_SYSTEM_PROP                  := $(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP                   := $(LOCAL_PATH)/system.prop
 
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS      := $(LOCAL_PATH)
+PRODUCT_COPY_FILES                   := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
+PRODUCT_COPY_FILES                   := $(filter-out frameworks/av/media/libeffects/data/audio_effects.conf:system/etc/audio_effects.conf , $(PRODUCT_COPY_FILES))
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
