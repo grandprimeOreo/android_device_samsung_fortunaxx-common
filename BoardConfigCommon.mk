@@ -106,7 +106,7 @@ PROTOBUF_SUPPORTED                   := true
 EXTENDED_FONT_FOOTPRINT              := true
 
 # malloc implementation
-MALLOC_IMPL                          := dlmalloc
+#MALLOC_SVELTE                       := true
 
 # Audio
 BOARD_USES_ALSA_AUDIO                := true
@@ -176,9 +176,6 @@ BOARD_HAS_NO_SELECT_BUTTON           := true
 BOARD_RECOVERY_SWIPE                 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT       := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS                  := true
-
-#Use dlmalloc instead of jemalloc for mallocs
-#MALLOC_SVELTE                       := true
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS       := $(LOCAL_PATH)
