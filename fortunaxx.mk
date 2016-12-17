@@ -84,8 +84,8 @@ PRODUCT_PACKAGES += \
     cm_charger_res_images
 
 # Doze
-#PRODUCT_PACKAGES += \
-#    SamsungDoze
+PRODUCT_PACKAGES += \
+    SamsungDoze
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -223,10 +223,6 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
-
-# Storage
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.sys.sdcardfs=true
 
 # USB
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
