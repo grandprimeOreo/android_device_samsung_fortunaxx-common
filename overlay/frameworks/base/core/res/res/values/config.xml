@@ -64,15 +64,15 @@
     <string-array translatable="false" name="config_tether_wifi_regexs">
         <item>"wlan0"</item>
     </string-array>
-	
-	<!-- List of regexpressions describing the interface (if any) that represent tetherable
+
+    <!-- List of regexpressions describing the interface (if any) that represent tetherable
                   bluetooth interfaces.  If the device doesn't want to support tethering over bluetooth this
          should be empty. -->
     <string-array name="config_tether_bluetooth_regexs">
         <item>"bt-pan"</item>
     </string-array>
-	
-	<!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
+
+    <!-- Array of ConnectivityManager.TYPE_xxxx values allowable for tethering -->
     <!-- Common options are [1, 4] for TYPE_WIFI and TYPE_MOBILE_DUN or
              <!== [0,1,5,7] for TYPE_MOBILE, TYPE_WIFI, TYPE_MOBILE_HIPRI and TYPE_BLUETOOTH -->
     <integer-array translatable="false" name="config_tether_upstream_types">
@@ -186,8 +186,8 @@
         <item>10</item>
         <item>10</item>
     </integer-array>
-	
-	 <!-- The RadioAccessFamilies supported by the device.
+
+    <!-- The RadioAccessFamilies supported by the device.
          Empty is viewed as "all".  Only used on devices which
          don't support RIL_REQUEST_GET_RADIO_CAPABILITY
          format is UMTS|LTE|... -->
@@ -204,7 +204,7 @@
         <item>"gprs:4092,8760,11680,4096,8760,11680"</item>
         <item>"evdo:4094,87380,1048576,4096,16384,262144"</item>
         <item>"ehrpd:4094,87380,1048576,4096,16384,262144"</item>
-	</string-array>
+    </string-array>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
@@ -216,7 +216,7 @@
     <!-- Boolean indicating if current platform supports bluetooth wide band
          speech -->
     <bool name="config_bluetooth_wide_band_speech">false</bool>
-	
+
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 
@@ -309,5 +309,14 @@
     <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
          true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">true</bool>
+
+    <!-- Enable overlay for all location components. -->
+    <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
+    <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
+    <bool name="config_enableFusedLocationOverlay" translatable="false">false</bool>
+    <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
+
+    <!-- Component name of the combo network location provider. -->
+    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
 
 </resources>
