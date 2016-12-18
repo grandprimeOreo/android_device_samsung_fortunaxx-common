@@ -31,7 +31,7 @@ TARGET_BOOTLOADER_BOARD_NAME    := MSM8916
 TARGET_CPU_VARIANT              := cortex-a53
 TARGET_CPU_CORTEX_A53           := true
 ARCH_ARM_HAVE_TLS_REGISTER      := true
-ENABLE_CPUSETS                  := true
+#ENABLE_CPUSETS                 := true
 
 # Qcom
 TARGET_PLATFORM_DEVICE_BASE          := /devices/soc.0/
