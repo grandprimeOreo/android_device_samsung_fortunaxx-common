@@ -650,7 +650,6 @@ on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
 on property:vold.decrypt=trigger_restart_framework
-    start config_bluetooth
     start wcnss-service
 
 on property:persist.env.fastdorm.enabled=true
@@ -682,11 +681,6 @@ service start_hci_filter /system/bin/wcnss_filter
     user root
     group bluetooth qcom_diag
     disabled
-
-service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
-    class core
-    user root
-    oneshot
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class late_start
