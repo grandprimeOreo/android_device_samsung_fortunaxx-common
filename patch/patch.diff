@@ -10,7 +10,7 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
                  mAudioManager.abandonAudioFocusForCall();
 +                if (setRealcallAudioParams) {
 +                    mAudioManager.setParameters("realcall=off");
-+                }
++                } 
                  mAudioManager.setMode(AudioManager.MODE_NORMAL);
  
                  mMostRecentMode = AudioManager.MODE_NORMAL;
@@ -19,7 +19,7 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
              boolean setMsimAudioParams = SystemProperties
                      .getBoolean("ro.multisim.set_audio_params", false);
 +            boolean setRealcallAudioParams = SystemProperties
-+                    .getBoolean("ro.telephony.samsung.realcall", false);		
++                    .getBoolean("ro.telephony.samsung.realcall", false);
              Call call = mCallAudioManager.getForegroundCall();
  
              mAudioManager.requestAudioFocusForCall(AudioManager.STREAM_VOICE_CALL,
@@ -33,12 +33,41 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
                  if (phoneId == 0) {
                      mAudioManager.setParameters("phone_type=cp1");
                  } else if (phoneId == 1) {
-@@ -375,7 +385,8 @@
-                     Log.e(LOG_TAG, e, "Cannot get phoneId from ID value " + account.getId());
+@@ -365,17 +375,34 @@
+         private int getPhoneId(Call call) {
+             if (call.getTargetPhoneAccount() != null) {
+                 PhoneAccountHandle account = call.getTargetPhoneAccount();
++                int phoneId = 0;
++                Context mContext = call.getContext();
++                SubscriptionInfo S1 = SubscriptionManager.from(mContext).getActiveSubscriptionInfoForSimSlotIndex(0);
++                SubscriptionInfo S2 = SubscriptionManager.from(mContext).getActiveSubscriptionInfoForSimSlotIndex(1);
++                int sim = TelephonyManager.getDefault().getSimCount();
+                 try {
+-                    int index = Integer.parseInt(account.getId());
+-                    int phoneId = SubscriptionManager.getPhoneId(index);
++                    String subId = account.getId();
++                    String I1 = S1.getIccId();
++                    if(sim > 1){
++                        String I2 = S2.getIccId();
++                        if(I2 != null){
++                            if(subId.contains(I2)){
++                                phoneId = 1;
++                            }
++                        }
++                    }
++                    if(subId.contains(I1)){
++                        phoneId = 0;
++                    }   
+                     if (SubscriptionManager.isValidPhoneId(phoneId)) {
++                        Log.i(LOG_TAG,  "phoneId = " + phoneId + "sim = " + sim);
+                         return phoneId;
+                     }
+                 } catch (NumberFormatException e) {
+-                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value " + account.getId());
++                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value ");
                  }
              }
 -            return -1;
-+            //return -1;
 +            return 0;
          }
      }
