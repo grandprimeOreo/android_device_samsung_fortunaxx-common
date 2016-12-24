@@ -1,7 +1,21 @@
 diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java b/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java
 --- a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java	Wed Apr 20 08:50:20 2016
 +++ b/packages/services/Telecomm/src/com/android/server/telecom/CallAudioModeStateMachine.java	Thu May 12 01:31:40 2016
-@@ -151,7 +151,12 @@
+@@ -16,11 +16,13 @@
+ 
+ package com.android.server.telecom;
+ 
++import android.content.Context;
+ import android.media.AudioManager;
+ import android.os.Message;
+ import android.os.SystemProperties;
+ import android.telecom.PhoneAccountHandle;
+ import android.telephony.SubscriptionManager;
++import android.telephony.SubscriptionInfo
+ import android.util.SparseArray;
+ 
+ import com.android.internal.util.IState;
+@@ -151,7 +153,12 @@
          public void enter() {
              if (mIsInitialized) {
                  Log.i(LOG_TAG, "Abandoning audio focus: now UNFOCUSED");
@@ -14,7 +28,7 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
                  mAudioManager.setMode(AudioManager.MODE_NORMAL);
  
                  mMostRecentMode = AudioManager.MODE_NORMAL;
-@@ -292,6 +297,8 @@
+@@ -292,6 +299,8 @@
              Log.i(LOG_TAG, "Audio focus entering SIM CALL state");
              boolean setMsimAudioParams = SystemProperties
                      .getBoolean("ro.multisim.set_audio_params", false);
@@ -23,7 +37,7 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
              Call call = mCallAudioManager.getForegroundCall();
  
              mAudioManager.requestAudioFocusForCall(AudioManager.STREAM_VOICE_CALL,
-@@ -300,6 +307,9 @@
+@@ -300,6 +309,9 @@
              if (call != null && setMsimAudioParams) {
                  int phoneId = getPhoneId(call);
                  Log.d(LOG_TAG, "setAudioParameters phoneId=" + phoneId);
@@ -33,45 +47,31 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
                  if (phoneId == 0) {
                      mAudioManager.setParameters("phone_type=cp1");
                  } else if (phoneId == 1) {
-@@ -365,17 +375,34 @@
+@@ -365,14 +377,21 @@
          private int getPhoneId(Call call) {
              if (call.getTargetPhoneAccount() != null) {
                  PhoneAccountHandle account = call.getTargetPhoneAccount();
-+                int phoneId = 0;
++                int phoneId = -1;
 +                Context mContext = call.getContext();
-+                SubscriptionInfo S1 = SubscriptionManager.from(mContext).getActiveSubscriptionInfoForSimSlotIndex(0);
-+                SubscriptionInfo S2 = SubscriptionManager.from(mContext).getActiveSubscriptionInfoForSimSlotIndex(1);
-+                int sim = TelephonyManager.getDefault().getSimCount();
++                SubscriptionInfo mSubscriptionInfo;
++                String subId = account.getId();
                  try {
 -                    int index = Integer.parseInt(account.getId());
 -                    int phoneId = SubscriptionManager.getPhoneId(index);
-+                    String subId = account.getId();
-+                    String I1 = S1.getIccId();
-+                    if(sim > 1){
-+                        String I2 = S2.getIccId();
-+                        if(I2 != null){
-+                            if(subId.contains(I2)){
-+                                phoneId = 1;
-+                            }
-+                        }
++                    for(int i = SubscriptionManager.from(mContext).getAllSubscriptionInfoCount()-1; i >= 0; i--){
++                        mSubscriptionInfo  = SubscriptionManager.from(mContext).getActiveSubscriptionInfoForSimSlotIndex(i);
++                        if(subId.contains(mSubscriptionInfo.getIccId())) phoneId = i;
 +                    }
-+                    if(subId.contains(I1)){
-+                        phoneId = 0;
-+                    }   
++                    Log.i(LOG_TAG,  "phoneId = " +  phoneId);
                      if (SubscriptionManager.isValidPhoneId(phoneId)) {
-+                        Log.i(LOG_TAG,  "phoneId = " + phoneId + "sim = " + sim);
                          return phoneId;
                      }
                  } catch (NumberFormatException e) {
 -                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value " + account.getId());
-+                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value ");
++                    Log.e(LOG_TAG, e, "Cannot get phoneId from ID value " + phoneId);
                  }
              }
--            return -1;
-+            return 0;
-         }
-     }
- 
+             return -1;
 
 diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java
 --- a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java	Mon Jun 20 17:28:46 2016
