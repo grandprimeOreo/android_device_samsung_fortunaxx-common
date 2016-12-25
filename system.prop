@@ -56,9 +56,6 @@ tunnel.audio.encode = false
 audio.offload.buffer.size.kb=32
 audio.offload.min.duration.secs=30
 
-# Wi-Fi, Bluetooth
-qcom.bluetooth.soc=smd
-
 # Misc.
 ro.product_ship=true
 ro.chipname=MSM8216
