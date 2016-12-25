@@ -37,16 +37,16 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
              Call call = mCallAudioManager.getForegroundCall();
  
              mAudioManager.requestAudioFocusForCall(AudioManager.STREAM_VOICE_CALL,
-@@ -305,6 +314,9 @@
-                 } else if (phoneId == 1) {
-                     mAudioManager.setParameters("phone_type=cp2");
-                 }
+@@ -300,6 +309,9 @@
+             if (call != null && setMsimAudioParams) {
+                 int phoneId = getPhoneId(call);
+                 Log.d(LOG_TAG, "setAudioParameters phoneId=" + phoneId);
 +                if(setRealcallAudioParams){
 +                    mAudioManager.setParameters("realcall=on");
 +                }
-             }
- 
-             mAudioManager.setMode(AudioManager.MODE_IN_CALL);
+                 if (phoneId == 0) {
+                     mAudioManager.setParameters("phone_type=cp1");
+                 } else if (phoneId == 1) {
 @@ -365,14 +377,21 @@
          private int getPhoneId(Call call) {
              if (call.getTargetPhoneAccount() != null) {
