@@ -11,7 +11,7 @@ diff -ur a/packages/services/Telecomm/src/com/android/server/telecom/CallAudioMo
  import android.os.SystemProperties;
  import android.telecom.PhoneAccountHandle;
  import android.telephony.SubscriptionManager;
-+import android.telephony.SubscriptionInfo
++import android.telephony.SubscriptionInfo;
  import android.util.SparseArray;
  
  import com.android.internal.util.IState;
