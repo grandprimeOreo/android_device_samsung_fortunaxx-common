@@ -116,9 +116,9 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     // fix params here
     params.set(android::CameraParameters::KEY_SUPPORTED_ISO_MODES, iso_values[id]);
-    params.set(android::CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "0.5");
-    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-2");
-    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "2");
+    params.set(android::CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "6");
+    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-12");
+    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "12");
 
     /* If the vendor has HFR values but doesn't also expose that
      * this can be turned off, fixup the params to tell the Camera
@@ -134,6 +134,14 @@ static char *camera_fixup_getparams(int id, const char *settings)
     params.set("whitebalance-values", "auto,incandescent,fluorescent,daylight,cloudy-daylight");
     params.set("effect-values", "none,mono,negative,sepia");
     params.set("auto-exposure-values", "center");
+	params.set("min-saturation", "0");
+	params.set("saturation-min", "0");
+	params.set("max-saturation", "8");
+	params.set("saturation-max", "8");
+	params.set("contrast-min","0");
+	params.set("min-contrast","0");
+	params.set("contrast-max","9");
+	params.set("max-contrast","9");
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
