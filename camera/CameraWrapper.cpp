@@ -133,16 +133,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     params.set("whitebalance-values", "auto,incandescent,fluorescent,daylight,cloudy-daylight");
     params.set("effect-values", "none,mono,negative,sepia");
-    params.set("auto-exposure-values", "center");
-	params.set("min-saturation", "0");
-	params.set("saturation-min", "0");
-	params.set("max-saturation", "8");
-	params.set("saturation-max", "8");
-	params.set("contrast-min","0");
-	params.set("min-contrast","0");
-	params.set("contrast-max","9");
-	params.set("max-contrast","9");
-
+    
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
@@ -180,9 +171,9 @@ static char *camera_fixup_setparams(struct camera_device *device, const char *se
 
     int video_width, video_height;
     params.getPreviewSize(&video_width, &video_height);
-    //if(video_width*video_height == 720*540){
-    //    params.set("preview-size", "960x540");  
-    //}
+    if(video_width*video_height == 720*540){
+        params.set("preview-size", "960x540");  
+    }
     if(video_width*video_height <= 960*540){
         params.set("preview-format", "yuv420p");
     }
