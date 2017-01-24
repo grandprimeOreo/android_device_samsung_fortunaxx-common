@@ -151,6 +151,8 @@ TARGET_PROVIDES_LIBLIGHT              := true
 # Media
 TARGET_QCOM_MEDIA_VARIANT             := caf
 
+BOARD_HAVE_QCOM_FM                    := true
+
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true
 TARGET_USES_OVERLAY                   := true
