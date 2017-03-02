@@ -119,6 +119,7 @@ BOARD_CHARGER_ENABLE_SUSPEND         := true
 BOARD_CHARGING_MODE_BOOTING_LPM      := /sys/class/power_supply/battery/batt_lp_charging
 BACKLIGHT_PATH                       := "/sys/class/leds/lcd-backlight/brightness"
 CHARGING_ENABLED_PATH                := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_NO_CHARGER_LED                 := true
 
 # Enable QCOM FM feature
 AUDIO_FEATURE_ENABLED_FM             := true
@@ -131,7 +132,7 @@ TARGET_POWERHAL_SET_INTERACTIVE_EXT  := $(LOCAL_PATH)/power/power_ext.c
 TARGET_POWERHAL_VARIANT              := qcom
 
 # Vold
-TARGET_USE_CUSTOM_LUN_FILE_PATH      := /sys/devices/platform/msm_hsusb/gadget/lun/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH      := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS  := true
 BOARD_VOLD_MAX_PARTITIONS            := 65
 
@@ -150,6 +151,8 @@ TARGET_PROVIDES_LIBLIGHT              := true
 
 # Media
 TARGET_QCOM_MEDIA_VARIANT             := caf
+
+BOARD_HAVE_QCOM_FM                    := true
 
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true

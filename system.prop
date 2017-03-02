@@ -12,12 +12,12 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
-persist.radio.rat_on=combine
+#persist.radio.rat_on=combine
 ro.telephony.ril_class=SamsungQcom3GDSRIL
-persist.radio.apm_sim_not_pwdn=1
+#persist.radio.apm_sim_not_pwdn=1
 persist.radio.add_power_save=1
-ro.ril.multi_rat_capable=false
-persist.radio.flexmap_type=nw_mode
+#ro.ril.multi_rat_capable=false
+#persist.radio.flexmap_type=nw_mode
 ro.telephony.ril.config=simactivation
 ro.ril.telephony.mqanelements=6
 
@@ -70,10 +70,10 @@ persist.timed.enable=true
 persist.debug.wfd.enable=1
 persist.hwc.enable_vds=1
 
-ro.config.max_starting_bg=8
-dalvik.vm.dex2oat-swap=false
-dalvik.vm.dex2oat-flags=--no-watch-dog
-ro.sys.fw.dex2oat_thread_count=4
+#ro.config.max_starting_bg=8
+#dalvik.vm.dex2oat-swap=false
+#dalvik.vm.dex2oat-flags=--no-watch-dog
+#ro.sys.fw.dex2oat_thread_count=4
 
 # Samsung OEM
 ro.multisim.set_audio_params=true
