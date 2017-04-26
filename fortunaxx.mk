@@ -203,7 +203,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libxml2 \
     Stk \
-    Stk2
+    Stk2 \
+    busybox \
+    su
 
 # Misc. libs
 PRODUCT_PACKAGES += \
