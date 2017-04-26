@@ -204,7 +204,7 @@ PRODUCT_PACKAGES += \
 # Misc. libs
 PRODUCT_PACKAGES += \
     libstlport \
-    libboringssl-compat
+    libboringssl-compat \
     libssl \
     libcrypto
 
