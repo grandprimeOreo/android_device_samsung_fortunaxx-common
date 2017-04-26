@@ -90,22 +90,21 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
-    audio_policy.msm8916 \
     audio.primary.msm8916 \
-    audio.primary.default \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessing	
 
 # TinyAlsa utils
 PRODUCT_PACKAGES += \
     tinyplay \
     tinycap \
     tinymix \
-    tinypcminfo	
+    tinypcminfo \
+    libtinycompress
 
 # Display
 PRODUCT_PACKAGES += \
@@ -148,10 +147,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libextmedia_jni \
     libqcmediaplayer \
-    libc2dcolorconvert \
-    libOmxVidcCommon \
-    libOmxVdecHevc \
-    libOmxVdpp \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -159,10 +154,8 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libdivxdrmdecrypt \
-    libstagefrighthw \
-    libdashplayer \
-    qcmediaplayer
+    libOmxVidcCommon \
+    libstagefrighthw
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
@@ -174,6 +167,7 @@ PRODUCT_PACKAGES += \
 # FM
 PRODUCT_PACKAGES += \
     FM2 \
+    FMRecord \
     libqcomfm_jni \
     qcom.fmradio
 
@@ -211,6 +205,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstlport \
     libboringssl-compat
+    libssl \
+    libcrypto
 
 # SoftAP
 PRODUCT_PACKAGES += \

@@ -5,7 +5,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.izat.premium_enabled=0 \
     ro.qc.sdk.izat.service_mask=0x0
 
-# Bluetooth properties
+# Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.bluetooth.soc=smd \
     ro.bluetooth.dun=true \
@@ -18,4 +18,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.bluetooth.nap=true \
     ro.qualcomm.bluetooth.opp=true \
     ro.qualcomm.bluetooth.pbap=true \
-    ro.qualcomm.bt.hci_transport=smd
+    ro.qualcomm.bt.hci_transport=smd \
+    persist.bt.enableAptXHD=true
