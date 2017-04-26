@@ -122,6 +122,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libril_shim
 
+# DRM
+PRODUCT_PACKAGES += \
+    libshims_wvm
+
 # Power
 PRODUCT_PACKAGES += \
     power.msm8916
