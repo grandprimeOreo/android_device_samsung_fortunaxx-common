@@ -26,6 +26,7 @@ LOCAL_PATH := device/samsung/fortunaxx-common
 TARGET_BOARD_PLATFORM           := msm8916
 TARGET_BOARD_PLATFORM_GPU       := qcom-adreno306
 TARGET_BOOTLOADER_BOARD_NAME    := MSM8916
+BOARD_USES_CYANOGEN_HARDWARE    := true
 
 # Arch
 TARGET_CPU_VARIANT              := cortex-a53
@@ -114,12 +115,12 @@ USE_CUSTOM_AUDIO_POLICY              := 1
 TARGET_QCOM_AUDIO_VARIANT            := caf
 
 # Charger
-BOARD_CHARGER_SHOW_PERCENTAGE        := true
 BOARD_CHARGER_ENABLE_SUSPEND         := true
 BOARD_CHARGING_MODE_BOOTING_LPM      := /sys/class/power_supply/battery/batt_lp_charging
 BACKLIGHT_PATH                       := "/sys/class/leds/lcd-backlight/brightness"
 CHARGING_ENABLED_PATH                := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_NO_CHARGER_LED                 := true
+BOARD_CHARGER_DISABLE_INIT_BLANK     := true
 
 # Enable QCOM FM feature
 AUDIO_FEATURE_ENABLED_FM             := true
@@ -189,6 +190,9 @@ TARGET_SYSTEM_PROP                   := $(LOCAL_PATH)/system.prop
 
 PRODUCT_COPY_FILES                   := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
 PRODUCT_COPY_FILES                   := $(filter-out frameworks/av/media/libeffects/data/audio_effects.conf:system/etc/audio_effects.conf , $(PRODUCT_COPY_FILES))
+
+#SU
+WITH_SU                              := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
