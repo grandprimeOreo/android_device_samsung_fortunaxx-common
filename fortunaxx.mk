@@ -95,7 +95,6 @@ PRODUCT_PACKAGES += \
     audio.primary.default \
     audio.r_submix.default \
     audio.usb.default \
-    libaudio-resampler \
     libaudioresampler \
     libqcompostprocbundle \
     libqcomvisualizer \
@@ -107,8 +106,7 @@ PRODUCT_PACKAGES += \
     tinycap \
     tinymix \
     tinypcminfo \
-    libtinycompress \
-    libtinyalsa
+    libtinycompress
 
 # Display
 PRODUCT_PACKAGES += \
