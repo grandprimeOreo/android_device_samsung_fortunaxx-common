@@ -56,8 +56,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/configs/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
@@ -91,12 +92,14 @@ PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
     audio.primary.msm8916 \
+    audio.primary.default \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
+    libaudioresampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing	
+    libqcomvoiceprocessing
 
 # TinyAlsa utils
 PRODUCT_PACKAGES += \
@@ -104,7 +107,8 @@ PRODUCT_PACKAGES += \
     tinycap \
     tinymix \
     tinypcminfo \
-    libtinycompress
+    libtinycompress \
+    libtinyalsa
 
 # Display
 PRODUCT_PACKAGES += \
@@ -112,9 +116,6 @@ PRODUCT_PACKAGES += \
     gralloc.msm8916 \
     hwcomposer.msm8916 \
     memtrack.msm8916 \
-    liboverlay \
-    libqdutils \
-    libqservice \
     libtinyxml
 
 # libril_shim
@@ -145,8 +146,6 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libextmedia_jni \
-    libqcmediaplayer \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -156,9 +155,6 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVidcCommon \
     libstagefrighthw
-
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
 
 # Gello
 PRODUCT_PACKAGES += \
@@ -198,8 +194,7 @@ PRODUCT_PACKAGES += \
     libxml2 \
     Stk \
     Stk2 \
-    busybox \
-    su
+    busybox
 
 # Misc. libs
 PRODUCT_PACKAGES += \
@@ -243,7 +238,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     cm.updater.uri=http://updates.cm-ota.pp.ua
 
 # We have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise	
+PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Common qcom
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
