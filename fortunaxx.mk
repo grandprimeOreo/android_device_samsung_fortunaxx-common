@@ -154,10 +154,6 @@ PRODUCT_PACKAGES += \
     libOmxVidcCommon \
     libstagefrighthw
 
-# Gello
-PRODUCT_PACKAGES += \
-    Gello
-
 # FM
 PRODUCT_PACKAGES += \
     FM2 \
