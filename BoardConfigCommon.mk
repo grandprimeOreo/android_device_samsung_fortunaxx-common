@@ -145,6 +145,10 @@ TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_HAS_LEGACY_CAMERA_HAL1          := true
 TARGET_NEEDS_TEXT_RELOCATIONS          := true
 
+# GPS
+TARGET_GPS_HAL_PATH                    := device/samsung/fortunaxx-common/gps
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET  := true
+
 # CMHW
 BOARD_HARDWARE_CLASS                 += $(LOCAL_PATH)/cmhw
 
