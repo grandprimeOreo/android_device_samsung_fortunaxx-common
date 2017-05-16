@@ -108,9 +108,6 @@ PROTOBUF_SUPPORTED                   := true
 # Fonts
 EXTENDED_FONT_FOOTPRINT              := true
 
-# malloc implementation
-MALLOC_IMPL                          := dlmalloc
-
 # Audio
 BOARD_USES_ALSA_AUDIO                := true
 USE_CUSTOM_AUDIO_POLICY              := 1
