@@ -120,7 +120,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
     };
  
 +   float GetMusicStreamVol(){
-+       AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
++       AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 +       int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 +       float vol = (float) currvol / 100;
 +       return vol;
