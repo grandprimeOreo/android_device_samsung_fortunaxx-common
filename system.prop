@@ -70,7 +70,6 @@ debug.egl.hw=1
 #system props for time-services
 persist.timed.enable=true
 
-persist.debug.wfd.enable=1
 persist.hwc.enable_vds=1
 
 ro.config.max_starting_bg=8
