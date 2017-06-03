@@ -88,6 +88,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     SamsungDoze
 
+PRODUCT_PACKAGES += \
+    FlipFlap
+
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
