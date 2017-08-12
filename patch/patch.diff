@@ -82,7 +82,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +        super.onChange(selfChange);
 +        AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 +        int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-+        float vol = (float) currvol / 100;
++        float vol = (float) currvol / 80;
 +        mAudioManager.setParameters("FMRadioVol=" + vol);
 +        Log.d("FMService", "vol: " + String.format("%.10f", vol));
 +    }
@@ -122,7 +122,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +   float GetMusicStreamVol() {
 +       AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 +       int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-+       float vol = (float) currvol / 100;
++       float vol = (float) currvol / 80;
 +       return vol;
 +   }
 +
@@ -177,20 +177,20 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
         }
  
         mPlaybackInProgress = true;
-@@ -1100,6 +1172,13 @@
+@@ -1098,6 +1170,13 @@
+ 
+    private void stopFM() {
         Log.d(LOGTAG, "In stopFM");
-        configureAudioDataPath(false);
-        mPlaybackInProgress = false;
 +       Log.d(LOGTAG,"FM_PATCH:stopFM()");
-+       Log.d(LOGTAG,"FM_PATCH:stopFM() fm_radio_mute=1");
-+       mAudioManager.setParameters("fm_radio_mute=1");
-+       Log.d(LOGTAG,"FM_PATCH:stopFM() fm_radio_mute=1 OK");
++       //Log.d(LOGTAG,"FM_PATCH:stopFM() fm_radio_mute=1");
++       //mAudioManager.setParameters("fm_radio_mute=1");
++       //Log.d(LOGTAG,"FM_PATCH:stopFM() fm_radio_mute=1 OK");
 +       Log.d(LOGTAG,"FM_PATCH:stopFM() fm_radio_volume=off");
 +       mAudioManager.setParameters("fm_radio_volume=off");
 +       Log.d(LOGTAG,"FM_PATCH:stopFM() fm_radio_volume=off OK");
+        configureAudioDataPath(false);
+        mPlaybackInProgress = false;
         try {
-            if ((mServiceInUse) && (mCallbacks != null))
-                mCallbacks.onFmAudioPathStopped();
 @@ -1298,6 +1377,12 @@
         if (mRecorder == null)
             return;
@@ -384,3 +384,4 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
           if (mAudioTrack != null)
               mAudioTrack.setVolume(1.0f);
           if (mResumeAfterCall)
+
