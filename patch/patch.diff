@@ -82,13 +82,13 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +        super.onChange(selfChange);
 +		
 +        AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-+		AudioManager.OnAudioFocusChangeListener afChangeListener;
++	setVolumeControlStream(AudioManager.STREAM_MUSIC);
 +		
-+        mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
++        //mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 +        int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 +        float vol = (float) currvol / 50;
 +        mAudioManager.setParameters("FMRadioVol=" + vol);
-+        mAudioManager.abandonAudioFocus(afChangeListener);
++        //mAudioManager.abandonAudioFocus(afChangeListener);
 +        Log.d("FMService", "vol: " + String.format("%.10f", vol));
 +    }
 +}
@@ -316,11 +316,11 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
             Log.d(LOGTAG, "enabling speaker");
 +           Log.d(LOGTAG, "FM_PATCH:enableSpeaker() true");
             AudioSystem.setForceUse(AudioSystem.FOR_MEDIA, AudioSystem.FORCE_SPEAKER);
-+           mAudioManager.setMode(AudioManager.MODE_IN_CALL);
++           //mAudioManager.setMode(AudioManager.MODE_IN_CALL);
 +           mAudioManager.setSpeakerphoneOn(true);
 +           mAudioManager.setParameters("fm_radio_volume=on");
 +           mAudioManager.setParameters("FMRadioVol=" + GetMusicStreamVol());
-+           mAudioManager.setMode(AudioManager.MODE_NORMAL);
++           //mAudioManager.setMode(AudioManager.MODE_NORMAL);
 +           Log.d(LOGTAG, "FM_PATCH:enableSpeaker() true OK");
         }
  
