@@ -82,7 +82,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +        super.onChange(selfChange);
 +		
 +        AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-+	setVolumeControlStream(AudioManager.STREAM_MUSIC);
++	//setVolumeControlStream(AudioManager.STREAM_MUSIC);
 +		
 +        //mAudioManager.requestAudioFocus(afChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
 +        int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
