@@ -141,11 +141,17 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
             return;
         }
         mResumeAfterCall = false;
-@@ -1066,6 +1107,7 @@
+@@ -1061,11 +1102,12 @@
+ 
+        AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int granted = audioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC,
+-              AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
++              AudioManager.AUDIOFOCUS_GAIN);
+        if(granted != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
            Log.d(LOGTAG, "audio focuss couldnot be granted");
            return;
         }
-+       Log.d(LOGTAG,"FM_PATCH:startFM() AUDIOFOCUS_GAIN_TRANSIENT");
++       Log.d(LOGTAG,"FM_PATCH:startFM() AUDIOFOCUS_GAIN");
         mSession.setActive(true);
  
         Log.d(LOGTAG,"FM registering for registerMediaButtonEventReceiver");
@@ -216,6 +222,15 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
               mRecorder.stop();
               mRecorder.reset();
               mRecorder.release();
+@@ -1489,7 +1574,7 @@
+                    Log.d(LOGTAG, "Resuming after call:");
+                    do {
+                        granted = audioManager.requestAudioFocus(mAudioFocusListener,
+-                               AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
++                               AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                        ++count;
+                        try {
+                            Thread.sleep(100);
 @@ -1563,7 +1648,21 @@
     private Runnable mSpeakerDisableTask = new Runnable() {
        public void run() {
@@ -422,7 +437,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
        boolean bCommandSent=true;
        if(isMuted())
            return bCommandSent;
-@@ -2560,7 +2736,12 @@
+@@ -2560,7 +2736,15 @@
        if (audioManager != null)
        {
           mMuted = true;
@@ -432,10 +447,13 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +         Log.d(LOGTAG, "FM_PATCH:mute(): SET fm_mute 1");
           audioManager.setParameters("fm_mute=1");
 +         Log.d(LOGTAG, "FM_PATCH:mute(): SET fm_mute 1 OK");
++		 Log.d(LOGTAG, "FM_PATCH:mute(): MODE_NORMAL");
++         mAudioManager.setMode(AudioManager.MODE_NORMAL);
++         Log.d(LOGTAG, "FM_PATCH:mute(): MODE_NORMAL OK");
           if (mAudioTrack != null)
               mAudioTrack.setVolume(0.0f);
        }
-@@ -2572,6 +2753,7 @@
+@@ -2572,6 +2756,7 @@
     * @return true if set mute mode api was invoked successfully, false if the api failed.
     */
     public boolean unMute() {
@@ -443,7 +461,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
        boolean bCommandSent=true;
        if(!isMuted())
            return bCommandSent;
-@@ -2582,7 +2764,12 @@
+@@ -2582,7 +2767,15 @@
        if (audioManager != null)
        {
           mMuted = false;
@@ -453,7 +471,18 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +         Log.d(LOGTAG, "FM_PATCH:unMute(): SET fm_mute 0");
           audioManager.setParameters("fm_mute=0");
 +         Log.d(LOGTAG, "FM_PATCH:unMute(): SET fm_mute 0 OK");
++		 Log.d(LOGTAG, "FM_PATCH:unMute(): MODE_NORMAL");
++         mAudioManager.setMode(AudioManager.MODE_NORMAL);
++         Log.d(LOGTAG, "FM_PATCH:unMute(): MODE_NORMAL OK");
           if (mAudioTrack != null)
               mAudioTrack.setVolume(1.0f);
           if (mResumeAfterCall)
-
+@@ -3818,7 +4011,7 @@
+            // adding code for audio focus gain.
+            AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+            audioManager.requestAudioFocus(mAudioFocusListener, AudioManager.STREAM_MUSIC,
+-                  AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
++                  AudioManager.AUDIOFOCUS_GAIN);
+            startFM();
+            mStoppedOnFocusLoss = false;
+        }
