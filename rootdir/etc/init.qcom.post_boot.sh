@@ -129,10 +129,10 @@ case "$target" in
                 echo "1 200000:40 400000:50 533333:70 800000:82 998400:90 1094400:95 1209600:99" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
                 echo 50000 > /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
                 echo 50000 > /sys/devices/system/cpu/cpufreq/interactive/max_freq_hysteresis
-                echo 800000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+                echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
                 
                 # Bring up all cores online
-		    echo 1 > /sys/devices/system/cpu/cpu1/online
+                echo 1 > /sys/devices/system/cpu/cpu1/online
 	        echo 1 > /sys/devices/system/cpu/cpu2/online
 	        echo 1 > /sys/devices/system/cpu/cpu3/online
 	        echo 1 > /sys/devices/system/cpu/cpu4/online
