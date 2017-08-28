@@ -101,8 +101,7 @@ PRODUCT_PACKAGES += \
     libaudioresampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libaudioroute
+    libqcomvoiceprocessing
 
 # TinyAlsa utils
 PRODUCT_PACKAGES += \
