@@ -48,21 +48,21 @@ case "$target" in
         fi
         case "$soc_id" in
             "206" | "247" | "248" | "249" | "250")
-		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
-	        echo 1 > /sys/devices/system/cpu/cpu1/online
-		echo 1 > /sys/devices/system/cpu/cpu2/online
-	        echo 1 > /sys/devices/system/cpu/cpu3/online
-	    ;;
-           "239" | "241" | "263" | "268" | "269" | "270" | "271")
-		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
-		echo 10 > /sys/class/net/rmnet0/queues/rx-0/rps_cpus
+            echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+            echo 1 > /sys/devices/system/cpu/cpu1/online
+            echo 1 > /sys/devices/system/cpu/cpu2/online
+            echo 1 > /sys/devices/system/cpu/cpu3/online
             ;;
-             "233" | "240" | "242")
-		echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
-	        echo 1 > /sys/devices/system/cpu/cpu1/online
-		echo 1 > /sys/devices/system/cpu/cpu2/online
-	        echo 1 > /sys/devices/system/cpu/cpu3/online
-	    ;;
+            "239" | "241" | "263" | "268" | "269" | "270" | "271")
+            echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+            echo 10 > /sys/class/net/rmnet0/queues/rx-0/rps_cpus
+            ;;
+            "233" | "240" | "242")
+            echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
+            echo 1 > /sys/devices/system/cpu/cpu1/online
+            echo 1 > /sys/devices/system/cpu/cpu2/online
+            echo 1 > /sys/devices/system/cpu/cpu3/online
+       ;;
        esac
     ;;
 esac
@@ -91,9 +91,9 @@ case "$target" in
                 echo 50 > /proc/sys/kernel/sched_mostly_idle_load
                 echo 10 > /proc/sys/kernel/sched_mostly_idle_nr_run
 
-		# disable thermal core_control to update scaling_min_freq
+                # disable thermal core_control to update scaling_min_freq
                 echo 0 > /sys/module/msm_thermal/core_control/enabled
-		echo 1 > /sys/devices/system/cpu/cpu0/online
+                echo 1 > /sys/devices/system/cpu/cpu0/online
                 echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 echo 200000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
                 # enable thermal core_control now
@@ -133,9 +133,9 @@ case "$target" in
                 
                 # Bring up all cores online
                 echo 1 > /sys/devices/system/cpu/cpu1/online
-	        echo 1 > /sys/devices/system/cpu/cpu2/online
-	        echo 1 > /sys/devices/system/cpu/cpu3/online
-	        echo 1 > /sys/devices/system/cpu/cpu4/online
+                echo 1 > /sys/devices/system/cpu/cpu2/online
+                echo 1 > /sys/devices/system/cpu/cpu3/online
+                echo 1 > /sys/devices/system/cpu/cpu4/online
             ;;
         esac      
     ;;
@@ -164,11 +164,11 @@ case "$target" in
            soc_id=`cat /sys/devices/system/soc/soc0/id`
         fi
         case $soc_id in
-            "239" | "241" | "263" | "268" | "269" | "270" | "271")
+        "239" | "241" | "263" | "268" | "269" | "270" | "271")
             setprop ro.min_freq_0 533333
             setprop ro.min_freq_4 499200
-	    ;;
-	    "206" | "247" | "248" | "249" | "250" | "233" | "240" | "242")
+        ;;
+        "206" | "247" | "248" | "249" | "250" | "233" | "240" | "242")
             setprop ro.min_freq_0 533333
         ;;
         esac
