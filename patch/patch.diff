@@ -110,7 +110,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +      getApplicationContext().getContentResolver().registerContentObserver(android.provider.Settings.System.CONTENT_URI, true, mSettingsContentObserver );
  
        getA2dpStatusAtStart();
-+	  setVolumeControlStream(AudioManager.STREAM_MUSIC);
++	  /* setVolumeControlStream(AudioManager.STREAM_MUSIC); */
     }
  
     @Override
