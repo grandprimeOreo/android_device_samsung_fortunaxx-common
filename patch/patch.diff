@@ -146,15 +146,15 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +	   if(enable){
 +		   Log.d(LOGTAG,"FM_PATCH:SetGlobalStreamMusic(enable)");
 +		    if(mVolumeKeysControlRingStream){
-+			   CMSettings.System.putIntForUser(getContentResolver(), CMSettings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 0);
++			   CMSettings.System.putIntForUser(getContentResolver(), CMSettings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 0, UserHandle.USER_CURRENT);
 +		    }
 +	   }
 +	   if(!enable){
 +		   Log.d(LOGTAG,"FM_PATCH:SetGlobalStreamMusic(disable)");
 +		   if(mVolumeKeysControlRingStream){
-+			   CMSettings.System.putIntForUser(getContentResolver(), CMSettings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 1);
++			   CMSettings.System.putIntForUser(getContentResolver(), CMSettings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 1, UserHandle.USER_CURRENT);
 +		   }else{
-+			   CMSettings.System.putIntForUser(getContentResolver(), CMSettings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 0);
++			   CMSettings.System.putIntForUser(getContentResolver(), CMSettings.System.VOLUME_KEYS_CONTROL_RING_STREAM, 0, UserHandle.USER_CURRENT);
 +		   }  
 +	   }
 +       return 0;
