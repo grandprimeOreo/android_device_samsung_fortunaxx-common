@@ -1,3 +1,20 @@
+diff -ur a/hardware/qcom/fm/fmapp2/AndroidManifest.xml b/hardware/qcom/fm/fmapp2/AndroidManifest.xml
+--- a/hardware/qcom/fm/fmapp2/AndroidManifest.xml	Mon Jun 20 17:28:46 2016
++++ b/hardware/qcom/fm/fmapp2/AndroidManifest.xml	Mon Jun 27 10:45:01 2016
+@@ -45,6 +45,13 @@
+     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL"/>
+     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+ 
++    <uses-permission android:name="cyanogenmod.permission.MANAGE_REMOTE_PREFERENCES" />
++
++    <protected-broadcast android:name="cyanogenmod.platform.app.profiles.PROFILES_STATE_CHANGED" />
++    <protected-broadcast android:name="org.cyanogenmod.cmparts.PART_CHANGED" />
++    <protected-broadcast android:name="org.cyanogenmod.cmparts.REFRESH_PART" />
++    <protected-broadcast android:name="org.cyanogenmod.cmparts.gestures.UPDATE_SETTINGS" />
++
+     <uses-sdk android:minSdkVersion="21"/>
+ 
+     <application
 diff -ur a/hardware/qcom/fm/fmapp2/Android.mk b/hardware/qcom/fm/fmapp2/Android.mk
 --- a/hardware/qcom/fm/fmapp2/Android.mk	Mon Jun 20 17:28:46 2016
 +++ b/hardware/qcom/fm/fmapp2/Android.mk	Mon Jun 27 10:45:01 2016
