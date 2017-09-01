@@ -830,6 +830,11 @@ service charger /charger
     seclabel u:r:healthd:s0
 
 on charger
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+    load_all_props
     start qcom-post-boot
 	
 on class_start:late_start
