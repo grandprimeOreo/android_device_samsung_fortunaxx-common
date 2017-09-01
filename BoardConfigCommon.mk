@@ -192,6 +192,27 @@ BOARD_RECOVERY_SWIPE                 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT       := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS                  := true
 
+# TWRP
+ifneq ($(wildcard bootable/recovery-twrp),)
+    RECOVERY_VARIANT := twrp
+endif
+ifeq ($(RECOVERY_VARIANT),twrp)
+    BOARD_GLOBAL_CFLAGS += -DTW_USE_MINUI_CUSTOM_FONTS
+    TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+    TW_MAX_BRIGHTNESS := 255
+    TW_HAS_DOWNLOAD_MODE := true
+    TW_HAS_MTP := true
+    TW_INCLUDE_CRYPTO := true
+    TW_INPUT_BLACKLIST := "accelerometer\x0ahbtp_vm"
+    TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+    TW_MTP_DEVICE := /dev/mtp_usb
+    TW_NEW_ION_HEAP := true
+    TW_NO_REBOOT_BOOTLOADER := true
+    TW_NO_USB_STORAGE := true
+    TW_TARGET_USES_QCOM_BSP := false
+    TW_THEME := portrait_hdpi
+endif
+
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS       := $(LOCAL_PATH)
 
