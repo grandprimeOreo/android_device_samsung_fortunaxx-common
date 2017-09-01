@@ -181,7 +181,7 @@ TARGET_SCREEN_HEIGHT                 := 960
 TARGET_USE_SDCLANG                   := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/fstab.qcom
+TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/recovery.fstab
 TARGET_USERIMAGES_USE_EXT4           := true
 TARGET_USERIMAGES_USE_F2FS           := true
 BOARD_HAS_LARGE_FILESYSTEM           := true
