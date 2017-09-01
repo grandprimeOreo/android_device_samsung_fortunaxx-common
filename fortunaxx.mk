@@ -239,10 +239,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1
     persist.sys.wfd.virtual=0
-    
-# Healthd properties
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.enable_boot_charger_mode=1
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
