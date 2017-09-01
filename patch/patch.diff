@@ -89,7 +89,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +        AudioManager mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 +
 +        int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-+        float vol = (float) currvol / 75;
++        float vol = (float) currvol / 50;
 +        mAudioManager.setParameters("FMRadioVol=" + vol);
 +        Log.d("FM_PATCH:FMService", "vol: " + String.format("%.10f", vol));
 +    }
@@ -137,7 +137,7 @@ diff -ur a/hardware/qcom/fm/fmapp2/src/com/caf/fmradio/FMRadioService.java b/har
 +       Log.d(LOGTAG,"FM_PATCH:GetMusicStreamVol()");
 +       AudioManager mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 +       int currvol = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-+       float vol = (float) currvol / 75;
++       float vol = (float) currvol / 50;
 +       return vol;
 +   }
 +
