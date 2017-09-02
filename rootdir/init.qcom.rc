@@ -60,7 +60,7 @@ on init
 
     # Support legacy paths
     symlink /sdcard /storage/sdcard0
-	
+
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
@@ -591,7 +591,7 @@ service thermal-engine /system/bin/thermal-engine
 service time_daemon /system/bin/time_daemon
    class late_start
    user root
-   group root	
+   group root
 
 service ssr_setup /system/bin/ssr_setup
     oneshot
@@ -836,7 +836,7 @@ on charger
     chmod 0664 /sys/class/power_supply/bms/voltage_ocv
     load_all_props
     start qcom-post-boot
-	
+
 on class_start:late_start
     trigger enable-low-power
 
