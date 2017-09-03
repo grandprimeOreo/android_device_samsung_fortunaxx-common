@@ -233,7 +233,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 
 # KSM
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=0
+    ro.ksm.default=1
 
 # WiFi Display
 PRODUCT_PROPERTY_OVERRIDES += \
