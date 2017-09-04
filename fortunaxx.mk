@@ -101,11 +101,15 @@ PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.0-impl
 
 # Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
+#PRODUCT_PACKAGES += \
+#    SamsungDoze
+#
+#PRODUCT_PACKAGES += \
+#    FlipFlap
 
+# Launcher3
 PRODUCT_PACKAGES += \
-    FlipFlap
+    Launcher3
 
 # Audio
 PRODUCT_PACKAGES += \

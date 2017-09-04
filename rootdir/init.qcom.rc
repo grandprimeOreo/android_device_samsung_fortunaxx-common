@@ -432,6 +432,8 @@ on boot
     chown system radio /sys/class/power_supply/battery/batt_temp_table
 
 on fs
+    wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
     mount_all fstab.qcom
     swapon_all fstab.qcom
 
