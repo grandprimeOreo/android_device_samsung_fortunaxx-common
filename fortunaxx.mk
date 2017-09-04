@@ -104,6 +104,10 @@ PRODUCT_PACKAGES += \
     libbt-vendor \
     android.hardware.bluetooth@1.0-impl
 
+# Sensor HAL
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl
+
 # Doze
 #PRODUCT_PACKAGES += \
 #    SamsungDoze
@@ -173,6 +177,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl \
     lights.msm8916
 
 # Keystore
@@ -181,6 +186,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
+    android.hardware.camera.provider@2.4-impl \
+    camera.device@3.2-impl \
     libmm-qcamera \
     camera.msm8916 \
     Snap
@@ -271,7 +278,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
 # For userdebug builds
-ADDITIONAL_DEFAULT_PROPERTIES += \
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.secure=0 \
     ro.adb.secure=0 \
     ro.debuggable=1 \
