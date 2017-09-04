@@ -95,6 +95,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl
+
 # Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
@@ -104,16 +109,21 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
-    audio.a2dp.default \
     audio.primary.msm8916 \
-    audio.primary.default \
-    audio.r_submix.default \
+    audio.a2dp.default \
     audio.usb.default \
-    libaudioresampler \
-    libqcompostprocbundle \
+    audio.r_submix.default \
+    libaudio-resampler \
     libqcomvisualizer \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessing \
+    libqcomvoiceprocessingdescriptors \
+    libqcompostprocbundle
+
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.broadcastradio@1.0-impl \
+    android.hardware.soundtrigger@2.0-impl
 
 # TinyAlsa utils
 PRODUCT_PACKAGES += \
@@ -243,6 +253,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     hostapd \
     wificond \
+    wifilogd \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
