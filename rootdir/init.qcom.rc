@@ -695,7 +695,7 @@ on property:wc_transport.start_hci=false
 service start_hci_filter /system/bin/wcnss_filter
     class late_start
     user root
-    group bluetooth qcom_diag
+    group bluetooth diag
     disabled
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
@@ -715,7 +715,7 @@ on property:bluetooth.hciattach=false
 service qmuxd /system/bin/qmuxd
     class main
     user root
-    group radio audio bluetooth gps qcom_diag wakelock
+    group radio audio bluetooth gps diag wakelock
 
 service netmgrd /system/bin/netmgrd
     class main
@@ -771,7 +771,7 @@ service wlandutservice /system/bin/wlandutservice
 service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
-    group gps inet net_raw qcom_diag net_admin wifi
+    group gps inet net_raw diag net_admin wifi
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     class late_start
@@ -813,7 +813,7 @@ service ril-daemon1 /system/bin/rild -l /system/lib/libsec-ril-dsds.so -c 2
     socket rild-debug2 stream 660 radio system
     user root
     disabled
-    group radio cache inet misc audio log qcom_diag system drmrpc sdcard_r sdcard_rw shell
+    group radio cache inet misc audio log diag system drmrpc sdcard_r sdcard_rw shell
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
