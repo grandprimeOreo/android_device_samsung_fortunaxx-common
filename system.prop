@@ -28,6 +28,7 @@ mm.enable.qcom_parser=3183219
 mmp.enable.3g2=true
 vidc.enc.narrow.searchrange=1
 media.aac_51_output_enabled=true
+persist.media.treble_omx=false
 qcom.hw.aac.encoder=false
 
 # Camera

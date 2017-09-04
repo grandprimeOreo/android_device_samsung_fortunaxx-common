@@ -153,7 +153,7 @@ TARGET_GPS_HAL_PATH                    := device/samsung/fortunaxx-common/gps
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET  := true
 
 # CMHW
-BOARD_HARDWARE_CLASS                 += $(LOCAL_PATH)/cmhw
+#BOARD_HARDWARE_CLASS                 += $(LOCAL_PATH)/cmhw
 
 # Workaround to avoid issues with legacy liblights on QCOM platforms
 TARGET_PROVIDES_LIBLIGHT              := true
@@ -226,10 +226,10 @@ PRODUCT_COPY_FILES                   := $(filter-out frameworks/base/data/keyboa
 PRODUCT_COPY_FILES                   := $(filter-out frameworks/av/media/libeffects/data/audio_effects.conf:system/etc/audio_effects.conf , $(PRODUCT_COPY_FILES))
 
 #SU
-WITH_SU                              := true
+#WITH_SU                              := true
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-   device/samsung/fortunaxx-common/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#   device/samsung/fortunaxx-common/sepolicy
