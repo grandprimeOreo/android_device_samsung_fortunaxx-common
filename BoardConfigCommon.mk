@@ -181,9 +181,8 @@ TARGET_SCREEN_HEIGHT                 := 960
 TARGET_USE_SDCLANG                   := true
 
 # Recovery
-TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/fstab.qcom
+TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/recovery.fstab
 TARGET_USERIMAGES_USE_EXT4           := true
-TARGET_USERIMAGES_USE_F2FS           := true
 BOARD_HAS_LARGE_FILESYSTEM           := true
 TARGET_RECOVERY_DENSITY              := hdpi
 BOARD_HAS_NO_MISC_PARTITION          := true
@@ -191,6 +190,27 @@ BOARD_HAS_NO_SELECT_BUTTON           := true
 BOARD_RECOVERY_SWIPE                 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT       := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS                  := true
+
+# TWRP
+ifneq ($(wildcard bootable/recovery-twrp),)
+    RECOVERY_VARIANT := twrp
+endif
+ifeq ($(RECOVERY_VARIANT),twrp)
+    BOARD_GLOBAL_CFLAGS += -DTW_USE_MINUI_CUSTOM_FONTS
+    TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+    TW_MAX_BRIGHTNESS := 255
+    TW_HAS_DOWNLOAD_MODE := true
+    TW_HAS_MTP := true
+    TW_INCLUDE_CRYPTO := true
+    TW_INPUT_BLACKLIST := "accelerometer\x0ahbtp_vm"
+    TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+    TW_MTP_DEVICE := /dev/mtp_usb
+    TW_NEW_ION_HEAP := true
+    TW_NO_REBOOT_BOOTLOADER := true
+    TW_NO_USB_STORAGE := true
+    TW_TARGET_USES_QCOM_BSP := false
+    TW_THEME := portrait_hdpi
+endif
 
 # Releasetools
 TARGET_RELEASETOOLS_EXTENSIONS       := $(LOCAL_PATH)
