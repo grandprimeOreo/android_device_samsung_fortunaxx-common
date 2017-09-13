@@ -140,7 +140,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
               "auto,incandescent,fluorescent,daylight,cloudy-daylight");		  
 
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
-              "auto,candlelight");
+              "auto");
     
     /* Enforce video-snapshot-supported to true */
     params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
