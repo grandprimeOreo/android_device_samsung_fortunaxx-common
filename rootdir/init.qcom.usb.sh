@@ -30,26 +30,6 @@
 chown -h root.system /sys/devices/platform/msm_hsusb/gadget/wakeup
 chmod -h 220 /sys/devices/platform/msm_hsusb/gadget/wakeup
 
-target=`getprop ro.board.platform`
-
-#
-# Allow USB enumeration with default PID/VID
-#
-echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
-usb_config=`getprop persist.sys.usb.config`
-case "$usb_config" in
-    "" | "adb") #USB persist config not set, select default configuration
-        case "$target" in
-            "msm8916")
-                #setprop persist.sys.usb.config none
-            ;;      
-        esac    
-    ;;
-    * )
-
-    ;; #USB persist config exists, do nothing
-esac
-
 #
 # Initialize RNDIS Diag option. If unset, set it to 'none'.
 #
