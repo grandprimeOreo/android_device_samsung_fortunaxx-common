@@ -127,7 +127,7 @@ BOARD_CHARGER_DISABLE_INIT_BLANK     := true
 AUDIO_FEATURE_ENABLED_FM             := true
 
 # Enable HW based full disk encryption
-TARGET_HW_DISK_ENCRYPTION            := true
+TARGET_HW_DISK_ENCRYPTION            := false
 TARGET_KEYMASTER_WAIT_FOR_QSEE       := true
 
 # Power HAL
