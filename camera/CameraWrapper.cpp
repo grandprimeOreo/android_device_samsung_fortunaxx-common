@@ -141,6 +141,10 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES,
               "auto");
+  
+    /* Camera not support video stabilization */
+    params.set(android::CameraParameters::KEY_VIDEO_STABILIZATION_SUPPORTED,
+              "false");
     
     /* Enforce video-snapshot-supported to true */
     params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
