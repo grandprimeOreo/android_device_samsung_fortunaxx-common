@@ -119,9 +119,11 @@ PRODUCT_PACKAGES += \
     memtrack.msm8916 \
     libtinyxml
 
-# libril_shim
+# RIL
 PRODUCT_PACKAGES += \
-    libril_shim
+    libril \
+    librilutils \
+    rild
 
 # DRM
 PRODUCT_PACKAGES += \
