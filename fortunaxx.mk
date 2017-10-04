@@ -79,57 +79,36 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-# Seccomp policy
+# HIDL
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
+    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
+# MSM8916 Headers
+PRODUCT_VENDOR_KERNEL_HEADERS := hardware/qcom/msm8916/kernel-headers
 
 # Use cm images if available, aosp ones otherwise
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# DRM
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl
-
-# Keymaster HAL
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
-
-# Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl
-
-# Bluetooth
-PRODUCT_PACKAGES += \
-    libbt-vendor \
-    android.hardware.bluetooth@1.0-impl
-
-# Sensor HAL
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
-
 # Doze
-#PRODUCT_PACKAGES += \
-#    SamsungDoze
-#
-#PRODUCT_PACKAGES += \
-#    FlipFlap
-
-# Launcher3
 PRODUCT_PACKAGES += \
-    Launcher3
+    SamsungDoze
+
+PRODUCT_PACKAGES += \
+    FlipFlap
 
 # Audio
 PRODUCT_PACKAGES += \
-    audio.primary.msm8916 \
+    audiod \
     audio.a2dp.default \
-    audio.usb.default \
+    audio.primary.msm8916 \
+    audio.primary.default \
     audio.r_submix.default \
-    libaudio-resampler \
+    audio.usb.default \
+    libaudioresampler \
+    libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libqcomvoiceprocessingdescriptors \
-    libqcompostprocbundle
+    libqcomvoiceprocessing
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -148,10 +127,10 @@ PRODUCT_PACKAGES += \
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
-    android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.memtrack@1.0-impl \
+    copybit.msm8916 \
     gralloc.msm8916 \
     hwcomposer.msm8916 \
     memtrack.msm8916 \
@@ -162,13 +141,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
-# libril_shim
+# RIL
 PRODUCT_PACKAGES += \
-    libril_shim
-
-# DRM
-PRODUCT_PACKAGES += \
-    libshims_wvm
+    libril \
+    librilutils \
+    rild
 
 # Power
 PRODUCT_PACKAGES += \
@@ -183,6 +160,14 @@ PRODUCT_PACKAGES += \
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8916
+
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
+
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -214,9 +199,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     qcom.fmradio
 
+# Bluetooth
+PRODUCT_PACKAGES += \
+    android.hardware.bluetooth@1.0-impl
+
 # GPS HAL
 PRODUCT_PACKAGES += \
-    gps.msm8916
+    android.hardware.gnss@1.0-impl \
+    gps.msm8916 \
+    libshims_get_process_name
+
+# Sensor HAL
+PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
@@ -257,8 +252,8 @@ PRODUCT_PACKAGES += \
 # SoftAP
 PRODUCT_PACKAGES += \
     libcurl \
-    libqsap_sdk \
-    libQWiFiSoftApCfg
+    wificond \
+    wifilogd
 
 # WiFi HAL
 PRODUCT_PACKAGES += \
@@ -267,26 +262,24 @@ PRODUCT_PACKAGES += \
 # WPA supplicant
 PRODUCT_PACKAGES += \
     hostapd \
-    wificond \
-    wifilogd \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf
 
-# USB
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+# USB HAL
+PRODUCT_PACKAGES += \
+    android.hardware.usb@1.0-service
+
+# Vibrator
+PRODUCT_PACKAGES += \
+    android.hardware.vibrator@1.0-impl
 
 # For userdebug builds
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.adb.secure=0 \
     ro.debuggable=1 \
     persist.service.adb.enable=1
-
-# KSM
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.ksm.default=1
 
 # I/O scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -306,15 +299,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-# USB HAL
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service
-
 # Common qcom
 $(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 
 # Dalvik heap config
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # Texture config.
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)

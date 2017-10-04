@@ -6,9 +6,9 @@ ril.subscription.types=NV,RUIM
 ro.telephony.default_network=9
 persist.radio.add_power_save=1
 persist.radio.apm_sim_not_pwdn=1
-persist.radio.sib16_support=1
 DEVICE_PROVISIONED=1
 ro.telephony.ril.config=simactivation,sim2gsmonly
+ro.ril.ecclist=911,112
 
 # Data modules
 ro.use_data_netmgrd=false
@@ -28,8 +28,8 @@ mm.enable.qcom_parser=3183219
 mmp.enable.3g2=true
 vidc.enc.narrow.searchrange=1
 media.aac_51_output_enabled=true
-persist.media.treble_omx=false
 qcom.hw.aac.encoder=false
+persist.media.treble_omx=false
 
 # Camera
 persist.camera.tn.disable=1
@@ -62,7 +62,6 @@ persist.hwc.enable_vds=1
 persist.hwc.mdpcomp.enable=true
 persist.sys.storage_preload=1
 ro.data.large_tcp_window_size=true
-sys.disable_ext_animation=1
 
 # Time services
 persist.timed.enable=true
@@ -73,7 +72,7 @@ persist.sys.wfd.virtual=0
 
 dalvik.vm.dex2oat-flags=--no-watch-dog
 ro.sys.fw.dex2oat_thread_count=4
-ro.sys.fw.bg_apps_limit=10
+ro.sys.fw.bg_apps_limit=12
 
 # Samsung OEM
 ro.multisim.set_audio_params=true

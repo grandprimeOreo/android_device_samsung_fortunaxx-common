@@ -38,7 +38,7 @@ ARCH_ARM_HAVE_TLS_REGISTER      := true
 TARGET_PLATFORM_DEVICE_BASE          := /devices/soc.0/
 HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
-TARGET_USES_QCOM_BSP                 := true
+#TARGET_USES_QCOM_BSP                 := true
 TARGET_USES_NEW_ION_API              := true
 
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
@@ -102,6 +102,8 @@ BLUETOOTH_HCI_USE_MCT                       := true
 # Custom RIL class
 BOARD_RIL_CLASS                      := ../../../device/samsung/fortunaxx-common/ril/
 PROTOBUF_SUPPORTED                   := true
+BOARD_PROVIDES_LIBRIL                := true
+BOARD_MODEM_TYPE                     := xmm7260
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT              := true
@@ -110,14 +112,12 @@ EXTENDED_FONT_FOOTPRINT              := true
 MALLOC_SVELTE                        := true
 
 # Audio
-AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-AUDIO_FEATURE_ENABLED_SND_MONITOR := true
-BOARD_USES_ALSA_AUDIO := true
-BOARD_USES_GENERIC_AUDIO := true
-TARGET_USES_QCOM_MM_AUDIO := true
+BOARD_USES_ALSA_AUDIO                := true
+USE_CUSTOM_AUDIO_POLICY              := 1
+TARGET_QCOM_AUDIO_VARIANT            := caf
+TARGET_USES_QCOM_MM_AUDIO            := true
 
 # Charger
-BOARD_HAL_STATIC_LIBRARIES           := libhealthd.cm
 BOARD_CHARGER_ENABLE_SUSPEND         := true
 BOARD_CHARGING_MODE_BOOTING_LPM      := /sys/class/power_supply/battery/batt_lp_charging
 BACKLIGHT_PATH                       := "/sys/class/leds/lcd-backlight/brightness"
@@ -129,13 +129,13 @@ BOARD_CHARGER_DISABLE_INIT_BLANK     := true
 AUDIO_FEATURE_ENABLED_FM             := true
 
 # Enable HW based full disk encryption
-TARGET_HW_DISK_ENCRYPTION            := true
+TARGET_HW_DISK_ENCRYPTION            := false
 TARGET_KEYMASTER_WAIT_FOR_QSEE       := true
 
 # Power HAL
-TARGET_POWERHAL_SET_INTERACTIVE_EXT  := $(LOCAL_PATH)/power/power_ext.c
-TARGET_POWERHAL_VARIANT              := qcom
-WITH_QC_PERF                         := true
+#TARGET_POWERHAL_SET_INTERACTIVE_EXT  := $(LOCAL_PATH)/power/power_ext.c
+TARGET_POWERHAL_VARIANT              := none
+WITH_QC_PERF                         := false
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH      := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
@@ -154,7 +154,7 @@ TARGET_GPS_HAL_PATH                    := device/samsung/fortunaxx-common/gps
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET  := true
 
 # CMHW
-#BOARD_HARDWARE_CLASS                 += $(LOCAL_PATH)/cmhw
+BOARD_HARDWARE_CLASS                 += $(LOCAL_PATH)/cmhw
 
 # Workaround to avoid issues with legacy liblights on QCOM platforms
 TARGET_PROVIDES_LIBLIGHT              := true
@@ -162,21 +162,20 @@ TARGET_PROVIDES_LIBLIGHT              := true
 # Media
 TARGET_QCOM_MEDIA_VARIANT             := caf
 
+# Fm radio
 BOARD_HAVE_QCOM_FM                    := true
 
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true
 TARGET_USES_OVERLAY                   := true
-TARGET_HARDWARE_3D                    := false
-TARGET_HAVE_HDMI_OUT                  := false
 USE_OPENGL_RENDERER                   := true
+TARGET_USES_GRALLOC1                  := true
+TARGET_USES_HWC2                      := true
+TARGET_USES_NEW_ION_API               := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS       := 3
 MAX_EGL_CACHE_KEY_SIZE                := 12*1024
 MAX_EGL_CACHE_SIZE                    := 2048*1024
 OVERRIDE_RS_DRIVER                    := libRSDriver.so
-TARGET_USES_GRALLOC1                  := true
-TARGET_USES_HWC2                      := true
-TARGET_USES_NEW_ION_API               := true
 
 # Boot animation
 TARGET_SCREEN_WIDTH                  := 540
@@ -227,10 +226,10 @@ PRODUCT_COPY_FILES                   := $(filter-out frameworks/base/data/keyboa
 PRODUCT_COPY_FILES                   := $(filter-out frameworks/av/media/libeffects/data/audio_effects.conf:system/etc/audio_effects.conf , $(PRODUCT_COPY_FILES))
 
 #SU
-#WITH_SU                              := true
+WITH_SU                              := true
 
 # SELinux
 #include device/qcom/sepolicy/sepolicy.mk
 
-#BOARD_SEPOLICY_DIRS += \
-#   device/samsung/fortunaxx-common/sepolicy
+BOARD_SEPOLICY_DIRS += \
+   device/samsung/fortunaxx-common/sepolicy

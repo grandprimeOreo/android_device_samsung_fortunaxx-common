@@ -38,6 +38,6 @@ function restart()
 
 if [ "$multisim" = "dsds" ]; then
     restart ril-daemon ril-daemon1
-elif [ "$multisim" = "dsda" ]; then
-    restart ril-daemon ril-daemon1
+elif [ "$multisim" = "none" ]; then
+    restart ril-daemon
 fi

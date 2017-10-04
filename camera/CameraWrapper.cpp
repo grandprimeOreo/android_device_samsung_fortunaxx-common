@@ -118,9 +118,6 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     // fix params here
     params.set(android::CameraParameters::KEY_SUPPORTED_ISO_MODES, iso_values[id]);
-    params.set(android::CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "6");
-    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-12");
-    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "12");
 
     /* If the vendor has HFR values but doesn't also expose that
      * this can be turned off, fixup the params to tell the Camera
@@ -133,9 +130,17 @@ static char *camera_fixup_getparams(int id, const char *settings)
         params.set(KEY_VIDEO_HFR_VALUES, tmp);
     }
 
-    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES,
-              "640x360,640x480,352x288,320x240,176x144");
+    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x360,640x480,352x288,320x240,176x144");
 
+    params.set(android::CameraParameters::KEY_SUPPORTED_EFFECTS, "none,mono,negative,sepia");
+ 
+    params.set(android::CameraParameters::KEY_SUPPORTED_WHITE_BALANCE, "auto,incandescent,fluorescent,daylight,cloudy-daylight");		  
+
+    params.set(android::CameraParameters::KEY_SUPPORTED_SCENE_MODES, "auto");
+  
+    /* Camera not support video stabilization */
+    params.set(android::CameraParameters::KEY_VIDEO_STABILIZATION_SUPPORTED, "false");	  
+    
     /* Enforce video-snapshot-supported to true */
     params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
 
@@ -161,8 +166,7 @@ static char *camera_fixup_setparams(struct camera_device *device, const char *se
     params.dump();
 #endif
 
-    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES,
-              "640x360,640x480,528x432,352x288,320x240,176x144");
+    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x360,640x480,528x432,352x288,320x240,176x144");
 
     if (params.get("iso")) {
         const char *isoMode = params.get(android::CameraParameters::KEY_ISO_MODE);
