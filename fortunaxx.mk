@@ -91,8 +91,8 @@ PRODUCT_PACKAGES += \
     charger_res_images
 
 # Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
+#PRODUCT_PACKAGES += \
+#    SamsungDoze
 
 PRODUCT_PACKAGES += \
     FlipFlap
