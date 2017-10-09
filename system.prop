@@ -65,10 +65,6 @@ ro.data.large_tcp_window_size=true
 # Time services
 persist.timed.enable=true
 
-# WiDi
-persist.hwc.enable_vds=1
-persist.sys.wfd.virtual=0
-
 dalvik.vm.dex2oat-flags=--no-watch-dog
 ro.sys.fw.dex2oat_thread_count=4
 ro.sys.fw.bg_apps_limit=12
