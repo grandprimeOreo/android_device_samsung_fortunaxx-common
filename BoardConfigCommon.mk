@@ -203,13 +203,18 @@ ifeq ($(RECOVERY_VARIANT),twrp)
     TW_HAS_MTP := true
     TW_INCLUDE_CRYPTO := true
     TW_INPUT_BLACKLIST := "accelerometer\x0ahbtp_vm"
-    TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+    TW_INTERNAL_STORAGE_PATH := "/data/media"
+    TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+    TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+    TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
     TW_MTP_DEVICE := /dev/mtp_usb
+    TW_DEFAULT_EXTERNAL_STORAGE := true
     TW_NEW_ION_HEAP := true
     TW_NO_REBOOT_BOOTLOADER := true
-    TW_NO_USB_STORAGE := true
     TW_TARGET_USES_QCOM_BSP := false
     TW_THEME := portrait_hdpi
+    RECOVERY_GRAPHICS_USE_LINELENGTH := true
+    TW_SCREEN_BLANK_ON_BOOT := true
 endif
 
 # Releasetools
