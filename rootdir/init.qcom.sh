@@ -78,6 +78,8 @@ case "$target" in
     ;;
 esac
 
+setprop persist.sys.usb.config adb
+
 bootmode=`getprop ro.bootmode`
 emmc_boot=`getprop ro.boot.emmc`
 case "$emmc_boot"
