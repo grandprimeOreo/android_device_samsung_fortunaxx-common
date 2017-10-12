@@ -1,1 +1,28 @@
-
+diff -ur a/device/samsung/qcom-common/overlay/frameworks/base/core/res/res/values/cm_arrays.xml b/device/samsung/qcom-common/overlay/frameworks/base/core/res/res/values/cm_arrays.xml
+--- a/device/samsung/qcom-common/overlay/frameworks/base/core/res/res/values/cm_arrays.xml	Wed Apr 20 08:50:20 2016
++++ b/device/samsung/qcom-common/overlay/frameworks/base/core/res/res/values/cm_arrays.xml	Thu May 12 01:31:40 2016
+@@ -15,20 +15,21 @@
+      limitations under the License.
+ -->
+ <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+-    <!-- Defines the shutdown options shown in the reboot dialog. -->
++    <!-- Defines the shutdown options shown in the reboot dialog. 
+     <array name="shutdown_reboot_options" translatable="false">
+         <item>@string/reboot_reboot</item>
+         <item>@string/reboot_soft</item>
+         <item>@string/reboot_recovery</item>
+         <item>@string/reboot_download</item>
+     </array>
+-
++    -->
+     <!-- Do not translate. Defines the shutdown actions passed to the kernel.
+-         The first item should be empty for regular reboot. -->
++         The first item should be empty for regular reboot. 
+     <string-array name="shutdown_reboot_actions" translatable="false">
+         <item></item>
+         <item>soft_reboot</item>
+         <item>recovery</item>
+         <item>download</item>
+      </string-array>
++	--> 
+ </resources>
