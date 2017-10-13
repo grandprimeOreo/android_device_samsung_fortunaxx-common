@@ -275,11 +275,11 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl
 
 # For userdebug builds
-#ADDITIONAL_DEFAULT_PROPERTIES += \
-#    ro.secure=0 \
-#    ro.adb.secure=0 \
-#    ro.debuggable=1 \
-#    persist.service.adb.enable=1
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1
 
 # I/O scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
