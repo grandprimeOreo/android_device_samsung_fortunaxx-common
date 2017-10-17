@@ -164,7 +164,10 @@ TARGET_QCOM_MEDIA_VARIANT             := caf
 BOARD_HAVE_QCOM_FM                    := true
 
 # Display
+TARGET_CONTINUOUS_SPLASH_ENABLED      := true
 TARGET_USES_OVERLAY                   := true
+TARGET_HARDWARE_3D                    := true
+TARGET_HAVE_HDMI_OUT                  := false
 USE_OPENGL_RENDERER                   := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS       := 3
 MAX_EGL_CACHE_KEY_SIZE                := 12*1024
