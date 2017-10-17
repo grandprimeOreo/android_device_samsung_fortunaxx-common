@@ -53,6 +53,7 @@ BOARD_KERNEL_TAGS_OFFSET           := 0x01e00000
 BOARD_KERNEL_PAGESIZE              := 2048
 BOARD_KERNEL_SEPARATED_DT          := true
 TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
+BOARD_KERNEL_IMAGE_NAME            := zImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
 
