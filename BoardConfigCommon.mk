@@ -135,8 +135,8 @@ TARGET_KEYMASTER_WAIT_FOR_QSEE       := true
 
 # Power HAL
 #TARGET_POWERHAL_SET_INTERACTIVE_EXT  := $(LOCAL_PATH)/power/power_ext.c
-TARGET_POWERHAL_VARIANT              := none
-WITH_QC_PERF                         := false
+TARGET_POWERHAL_VARIANT              := qcom
+WITH_QC_PERF                         := true
 
 # Vold
 TARGET_USE_CUSTOM_LUN_FILE_PATH      := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
