@@ -83,9 +83,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
-# MSM8916 Headers
-PRODUCT_VENDOR_KERNEL_HEADERS := hardware/qcom/msm8916/kernel-headers
-
 # Use cm images if available, aosp ones otherwise
 PRODUCT_PACKAGES += \
     charger_res_images
