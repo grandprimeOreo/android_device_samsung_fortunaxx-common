@@ -23,13 +23,13 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-LOCAL_PATH := $(call my-dir)
-include $(CLEAR_VARS)
+#LOCAL_PATH := $(call my-dir)
+#include $(CLEAR_VARS)
 
-LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_SRC_FILES := power.c
-LOCAL_SHARED_LIBRARIES := liblog libcutils
-LOCAL_MODULE := power.msm8916
-LOCAL_MODULE_TAGS := optional
+#LOCAL_MODULE_RELATIVE_PATH := hw
+#LOCAL_SRC_FILES := power.c
+#LOCAL_SHARED_LIBRARIES := liblog libcutils
+#LOCAL_MODULE := power.msm8916
+#LOCAL_MODULE_TAGS := optional
 
-include $(BUILD_SHARED_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
