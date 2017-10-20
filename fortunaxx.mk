@@ -144,8 +144,9 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.0-impl \
-    power.msm8916
+    android.hardware.power@1.0-impl
+    
+#    power.msm8916
 
 # Lights
 PRODUCT_PACKAGES += \
