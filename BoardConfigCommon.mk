@@ -182,7 +182,7 @@ TARGET_SCREEN_WIDTH                  := 540
 TARGET_SCREEN_HEIGHT                 := 960
 
 # Snapdragon LLVM
-TARGET_USE_SDCLANG                   := true
+#TARGET_USE_SDCLANG                   := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/recovery.fstab
@@ -226,10 +226,10 @@ PRODUCT_COPY_FILES                   := $(filter-out frameworks/base/data/keyboa
 PRODUCT_COPY_FILES                   := $(filter-out frameworks/av/media/libeffects/data/audio_effects.conf:system/etc/audio_effects.conf , $(PRODUCT_COPY_FILES))
 
 #SU
-WITH_SU                              := true
+#WITH_SU                              := true
 
 # SELinux
-#include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += \
    device/samsung/fortunaxx-common/sepolicy
