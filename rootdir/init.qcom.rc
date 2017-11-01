@@ -53,7 +53,7 @@ on early-init
     chmod 644 /proc/cmdline
 
 on init
-    #LD_SHIM_LIBS /system/lib/libril.so|libril_shim.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libizat_core.so|libshims_get_process_name.so
+    LD_SHIM_LIBS /system/lib/libril.so|libril_shim.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libizat_core.so|libshims_get_process_name.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
