@@ -74,6 +74,8 @@ dalvik.vm.dex2oat-flags=--no-watch-dog
 ro.sys.fw.dex2oat_thread_count=4
 ro.sys.fw.bg_apps_limit=12
 
+ro.crypto.state=unencrypted
+
 # Samsung OEM
 ro.multisim.set_audio_params=true
 ro.telephony.samsung.realcall=true
