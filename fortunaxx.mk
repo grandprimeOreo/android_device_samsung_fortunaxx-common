@@ -1,5 +1,5 @@
 # Also get non-open-source specific aspects if available
-$(call inherit-product-if-exists, vendor/samsung/fortunaxx-common/fortunaxx-common-vendor.mk)
+#$(call inherit-product-if-exists, vendor/samsung/fortunaxx-common/fortunaxx-common-vendor.mk)
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
