@@ -27,24 +27,15 @@ diff -ur a/device/samsung/qcom-common/overlay/frameworks/base/core/res/res/value
 +	--> 
  </resources>
 
-diff -ur a/hardware/qcom/display-caf/msm8916/libhwcomposer/hwc_vsync.cpp b/hardware/qcom/display-caf/msm8916/libhwcomposer/hwc_vsync.cpp
---- a/hardware/qcom/display-caf/msm8916/libhwcomposer/hwc_vsync.cpp	Wed Apr 20 08:50:20 2016
-+++ b/hardware/qcom/display-caf/msm8916/libhwcomposer/hwc_vsync.cpp	Thu May 12 01:31:40 2016
-@@ -19,7 +19,6 @@
-  */
- 
- #include <cutils/properties.h>
--#include <cutils/iosched_policy.h>
- #include <utils/Log.h>
- #include <fcntl.h>
- #include <sys/ioctl.h>
-@@ -117,7 +116,6 @@
-     prctl(PR_SET_NAME, (unsigned long) &thread_name, 0, 0, 0);
-     setpriority(PRIO_PROCESS, 0, HAL_PRIORITY_URGENT_DISPLAY +
-                 android::PRIORITY_MORE_FAVORABLE);
--    android_set_rt_ioprio(0, 1);
- 
-     char vdata[MAX_DATA];
-     //Number of physical displays
+diff -ur a/hardware/samsung/Android.mk b/hardware/samsung/Android.mk
+--- a/hardware/samsung/Android.mk	Wed Apr 20 08:50:20 2016
++++ b/hardware/samsung/Android.mk	Thu May 12 01:31:40 2016
+@@ -44,5 +44,5 @@
+ include $(SAM_ROOT)/liblights/Android.mk
+ include $(SAM_ROOT)/modemloader/Android.mk
+ include $(SAM_ROOT)/power/Android.mk
+-include $(SAM_ROOT)/ril/Android.mk
++#include $(SAM_ROOT)/ril/Android.mk
+ endif
 
 
