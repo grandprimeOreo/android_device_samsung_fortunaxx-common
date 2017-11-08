@@ -48,8 +48,6 @@ BOARD_DTBTOOL_ARG                  := -2
 BOARD_KERNEL_BASE                  := 0x80000000
 BOARD_KERNEL_CMDLINE               := console=null androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS               := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
-BOARD_CUSTOM_BOOTIMG               := true
-BOARD_CUSTOM_BOOTIMG_MK            := hardware/samsung/mkbootimg.mk
 BOARD_KERNEL_PAGESIZE              := 2048
 BOARD_KERNEL_SEPARATED_DT          := true
 TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
