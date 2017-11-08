@@ -55,7 +55,7 @@ BOARD_KERNEL_SEPARATED_DT          := true
 TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
 BOARD_KERNEL_IMAGE_NAME            := zImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
-KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
+KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 
 # Partition sizes
 TARGET_USERIMAGES_USE_EXT4          := true
@@ -87,12 +87,12 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME          := "wlan"
 
-WLAN_MODULES:
-	mkdir -p $(KERNEL_MODULES_OUT)/pronto
-	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
-	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
+#WLAN_MODULES:
+#	mkdir -p $(KERNEL_MODULES_OUT)/pronto
+#	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
+#	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
 
-TARGET_KERNEL_MODULES += WLAN_MODULES
+#TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
