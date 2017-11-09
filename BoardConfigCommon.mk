@@ -46,7 +46,7 @@ TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 TARGET_KERNEL_ARCH                 := arm
 BOARD_DTBTOOL_ARG                  := -2
 BOARD_KERNEL_BASE                  := 0x80000000
-BOARD_KERNEL_CMDLINE               := console=null androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive androidboot.llcon=2,100,0,0x03200000,24,960,540,720,8,0x83000000
+BOARD_KERNEL_CMDLINE               := console=null androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive androidboot.llcon=2,100,0,0x83000000,24,960,540,720,8,0xFFFFFF
 BOARD_MKBOOTIMG_ARGS               := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 BOARD_KERNEL_PAGESIZE              := 2048
 BOARD_KERNEL_SEPARATED_DT          := true
