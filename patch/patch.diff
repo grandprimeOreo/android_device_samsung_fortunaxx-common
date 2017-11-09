@@ -38,4 +38,17 @@ diff -ur a/hardware/samsung/Android.mk b/hardware/samsung/Android.mk
 +#include $(SAM_ROOT)/ril/Android.mk
  endif
 
+diff -ur a/system/core/init/Android.mk b/system/core/init/Android.mk
+--- a/system/core/init/Android.mk
++++ b/system/core/init/Android.mk
+@@ -8,7 +8,7 @@
+ init_options += \
+     -DALLOW_LOCAL_PROP_OVERRIDE=1 \
+     -DALLOW_PERMISSIVE_SELINUX=1 \
+-    -DREBOOT_BOOTLOADER_ON_PANIC=1 \
++    -DREBOOT_BOOTLOADER_ON_PANIC=0 \
+     -DDUMP_ON_UMOUNT_FAILURE=1
+ else
+ init_options += \
+
 
