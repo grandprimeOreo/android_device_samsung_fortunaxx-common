@@ -37,7 +37,6 @@ diff -ur a/hardware/samsung/Android.mk b/hardware/samsung/Android.mk
 -include $(SAM_ROOT)/ril/Android.mk
 +#include $(SAM_ROOT)/ril/Android.mk
  endif
-
 diff -ur a/system/core/init/Android.mk b/system/core/init/Android.mk
 --- a/system/core/init/Android.mk
 +++ b/system/core/init/Android.mk
