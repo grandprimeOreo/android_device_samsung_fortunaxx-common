@@ -124,10 +124,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libril_shim
 
-# DRM
-PRODUCT_PACKAGES += \
-    libshims_wvm
-
 # Power
 PRODUCT_PACKAGES += \
     power.msm8916
@@ -228,14 +224,13 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.debuggable=1 \
     persist.service.adb.enable=1
 
-# I/O scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=bfq
-
 # WiFi Display
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1
     persist.sys.wfd.virtual=0
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.low_ram=true
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
