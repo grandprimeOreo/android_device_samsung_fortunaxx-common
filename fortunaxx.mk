@@ -229,9 +229,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1
     persist.sys.wfd.virtual=0
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.low_ram=true
-
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
@@ -249,5 +246,8 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
 # Texture config.
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapgrowthlimit=96m
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
