@@ -172,7 +172,7 @@ USE_OPENGL_RENDERER                   := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS       := 3
 MAX_EGL_CACHE_KEY_SIZE                := 12*1024
 MAX_EGL_CACHE_SIZE                    := 2048*1024
-OVERRIDE_RS_DRIVER                    := libRSDriver.so
+OVERRIDE_RS_DRIVER                    := libRSDriver_adreno.so
 
 # Boot animation
 TARGET_SCREEN_WIDTH                  := 540
