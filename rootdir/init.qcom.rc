@@ -440,16 +440,16 @@ on boot
 on property:ro.config.ksm=true
     write /sys/kernel/mm/ksm/deferred_timer 1
     write /sys/kernel/mm/ksm/pages_to_scan 256
-    write /sys/kernel/mm/ksm/sleep_millisecs 1000
+    write /sys/kernel/mm/ksm/sleep_millisecs 600
     write /sys/kernel/mm/ksm/run 1
 
 # Setup ZRAM options
 on property:ro.config.zram=true
-    write /sys/block/zram0/comp_algorithm lz4
+    #write /sys/block/zram0/comp_algorithm lz4
     #write /sys/block/zram0/max_comp_streams 2
     swapon_all fstab.qcom
     write /proc/sys/vm/page-cluster 0
-    write /proc/sys/vm/swappiness 100
+    write /proc/sys/vm/swappiness 40
 
 on fs
     mount_all fstab.qcom
