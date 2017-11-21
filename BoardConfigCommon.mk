@@ -107,7 +107,7 @@ PROTOBUF_SUPPORTED                   := true
 EXTENDED_FONT_FOOTPRINT              := true
 
 # malloc implementation
-MALLOC_SVELTE                        := true
+MALLOC_SVELTE                        := false
 
 # Audio
 BOARD_USES_ALSA_AUDIO                := true
