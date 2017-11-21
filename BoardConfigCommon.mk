@@ -26,7 +26,6 @@ LOCAL_PATH := device/samsung/fortunaxx-common
 TARGET_BOARD_PLATFORM           := msm8916
 TARGET_BOARD_PLATFORM_GPU       := qcom-adreno306
 TARGET_BOOTLOADER_BOARD_NAME    := MSM8916
-BOARD_USES_CYANOGEN_HARDWARE    := true
 
 # Arch
 TARGET_CPU_VARIANT              := cortex-a53
