@@ -61,6 +61,7 @@ TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
 BOARD_KERNEL_IMAGE_NAME            := zImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
+BOARD_CUSTOM_BOOTIMG_MK            := hardware/samsung/mkbootimg.mk
 
 # Partition sizes
 TARGET_USERIMAGES_USE_EXT4          := true
