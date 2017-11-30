@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+FORCE_32_BIT := true
 
 # Inherit from samsung qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk 
@@ -23,9 +24,14 @@
 LOCAL_PATH := device/samsung/fortunaxx-common
 
 # Platform
+TARGET_ARCH                     := arm
+TARGET_CPU_ABI                  := armeabi-v7a
+TARGET_CPU_ABI2                 := armeabi
+TARGET_ARCH_VARIANT             := armv7-a-neon
 TARGET_BOARD_PLATFORM           := msm8916
 TARGET_BOARD_PLATFORM_GPU       := qcom-adreno306
 TARGET_BOOTLOADER_BOARD_NAME    := MSM8916
+BOARD_VENDOR                    := samsung
 
 # Arch
 TARGET_CPU_VARIANT              := cortex-a53
@@ -43,7 +49,7 @@ TARGET_USES_NEW_ION_API              := true
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
 # Kernel
-TARGET_KERNEL_ARCH                 := arm
+#TARGET_KERNEL_ARCH                 := arm
 BOARD_DTBTOOL_ARG                  := -2
 BOARD_KERNEL_BASE                  := 0x80000000
 BOARD_KERNEL_CMDLINE               := console=null androidboot.hardware=qcom msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive
@@ -52,8 +58,8 @@ BOARD_KERNEL_PAGESIZE              := 2048
 BOARD_KERNEL_SEPARATED_DT          := true
 TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
 BOARD_KERNEL_IMAGE_NAME            := zImage
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
-KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
+#KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 
 # Partition sizes
 TARGET_USERIMAGES_USE_EXT4          := true
