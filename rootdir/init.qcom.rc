@@ -583,6 +583,11 @@ on post-fs-data
     chown radio system /sys/class/dct/dct_node/interface
     chown radio system /sys/class/dct/dct_node/libname
     chown radio system /sys/class/dct/dct_node/tunned
+	
+service logcat_debug /system/bin/logcat -b all -f /sdcard/logcat.txt -v threadtime
+    class main
+    user root
+    group system
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
