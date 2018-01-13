@@ -38,15 +38,15 @@ diff -ur a/hardware/samsung/Android.mk b/hardware/samsung/Android.mk
 +#include $(SAM_ROOT)/ril/Android.mk
  endif
  
-diff -ur a/system/core/init/init.cpp b/system/core/init/init.cpp
---- a/system/core/init/init.cpp	Wed Apr 20 08:50:20 2016
-+++ b/system/core/init/init.cpp	Thu May 12 01:31:40 2016
-@@ -954,7 +954,7 @@
-         return watchdogd_main(argc, argv);
-     }
+diff -ur a/system/core/init/util.cpp b/system/core/init/util.cpp
+--- a/system/core/init/util.cpp	Wed Apr 20 08:50:20 2016
++++ b/system/core/init/util.cpp	Thu May 12 01:31:40 2016
+@@ -414,7 +414,7 @@
  
--    if (REBOOT_BOOTLOADER_ON_PANIC) {
-+    if (!REBOOT_BOOTLOADER_ON_PANIC) {
-         install_reboot_signal_handlers();
-     }
+ void panic() {
+     LOG(ERROR) << "panic: rebooting to bootloader";
+-    DoReboot(ANDROID_RB_RESTART2, "reboot", "bootloader", false);
++    DoReboot(ANDROID_RB_RESTART2, "reboot", "recovery", false);
+ }
  
+ std::ostream& operator<<(std::ostream& os, const Timer& t) {
