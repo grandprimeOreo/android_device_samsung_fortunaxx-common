@@ -201,9 +201,6 @@ BOARD_RECOVERY_SWIPE                 := true
 BOARD_USE_CUSTOM_RECOVERY_FONT       := \"roboto_23x41.h\"
 BOARD_USES_MMCUTILS                  := true
 
-# USB
-TARGET_USES_LEGACY_ADB_INTERFACE := true
-
 # TWRP
 ifneq ($(wildcard bootable/recovery-twrp),)
     RECOVERY_VARIANT := twrp
