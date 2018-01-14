@@ -119,7 +119,7 @@ EXTENDED_FONT_FOOTPRINT              := true
 MALLOC_SVELTE                        := true
 
 # Audio
-BOARD_USES_ALSA_AUDIO                := true
+BOARD_USES_CUSTOM_AUDIO              := true
 USE_CUSTOM_AUDIO_POLICY              := 1
 TARGET_USES_QCOM_MM_AUDIO            := true
 
