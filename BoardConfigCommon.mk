@@ -169,7 +169,7 @@ TARGET_PROVIDES_LIBLIGHT              := true
 TARGET_QCOM_MEDIA_VARIANT             := caf
 
 # Fm radio
-BOARD_HAVE_QCOM_FM                    := true
+#BOARD_HAVE_QCOM_FM                    := true
 
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true
