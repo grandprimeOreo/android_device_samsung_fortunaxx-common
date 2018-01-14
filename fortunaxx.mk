@@ -200,7 +200,6 @@ PRODUCT_BOOT_JARS += \
 # Bluetooth
 PRODUCT_PACKAGES += \
 	javax.btobex \
-	libbt-vendor \
 	android.hardware.bluetooth@1.0-impl
 
 # Properties
