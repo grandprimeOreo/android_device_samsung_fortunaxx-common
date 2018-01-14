@@ -142,7 +142,8 @@ PRODUCT_PACKAGES += \
 
 # RIL
 PRODUCT_PACKAGES += \
-    libril_shim
+    libril_shim \
+	libshim_secril \
 
 # Power
 PRODUCT_PACKAGES += \
@@ -198,13 +199,23 @@ PRODUCT_BOOT_JARS += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl
+	javax.btobex \
+	libbt-vendor \
+	android.hardware.bluetooth@1.0-impl
+
+# Properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    qcom.bluetooth.soc=smd \
+    ro.bluetooth.dun=true \
+    ro.bluetooth.hfp.ver=1.7 \
+    ro.bluetooth.sap=true \
+    ro.qualcomm.bt.hci_transport=smd
 
 # GPS HAL
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
     gps.msm8916 \
-    libshims_get_process_name
+    libshim_gps
 
 # Sensor HAL
 PRODUCT_PACKAGES += \
