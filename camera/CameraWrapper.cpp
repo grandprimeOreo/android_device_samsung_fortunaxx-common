@@ -32,8 +32,6 @@
 #include <hardware/camera.h>
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
-#include <camera/CameraParametersExtra.h>
-
 
 static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
@@ -103,6 +101,8 @@ static int check_vendor_module()
 }
 
 #define KEY_VIDEO_HFR_VALUES "video-hfr-values"
+#define KEY_SUPPORTED_ISO_MODES "iso-values"
+#define KEY_ISO_MODE "iso"
 
 const static char * iso_values[] = {"auto,ISO_HJR,ISO100,ISO200,ISO400,ISO800,ISO1600,auto"};
 
@@ -165,17 +165,17 @@ static char *camera_fixup_setparams(struct camera_device *device, const char *se
               "640x360,640x480,528x432,352x288,320x240,176x144");
 
     if (params.get("iso")) {
-        const char *isoMode = params.get(android::CameraParameters::KEY_ISO_MODE);
+        const char *isoMode = params.get(KEY_ISO_MODE);
         if (strcmp(isoMode, "ISO100") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "100");
+            params.set(KEY_ISO_MODE, "100");
         else if (strcmp(isoMode, "ISO200") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "200");
+            params.set(KEY_ISO_MODE, "200");
         else if (strcmp(isoMode, "ISO400") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "400");
+            params.set(KEY_ISO_MODE, "400");
         else if (strcmp(isoMode, "ISO800") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "800");
+            params.set(KEY_ISO_MODE, "800");
         else if (strcmp(isoMode, "ISO1600") == 0)
-            params.set(android::CameraParameters::KEY_ISO_MODE, "1600");
+            params.set(KEY_ISO_MODE, "1600");
     }
 
     android::String8 strParams = params.flatten();
