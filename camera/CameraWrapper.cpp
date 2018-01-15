@@ -117,7 +117,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
 #endif
 
     // fix params here
-    params.set(android::CameraParameters::KEY_SUPPORTED_ISO_MODES, iso_values[id]);
+    params.set(KEY_SUPPORTED_ISO_MODES, iso_values[id]);
     params.set(android::CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "6");
     params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-12");
     params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "12");
