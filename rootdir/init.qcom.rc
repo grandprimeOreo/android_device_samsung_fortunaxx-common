@@ -661,6 +661,9 @@ on property:persist.debug.trace=1
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
+# Wifi firmware reload path
+    chown wifi wifi /sys/module/wlan/parameters/fwpath
+
 on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
     
@@ -788,6 +791,13 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 on property:sys.boot_completed=1
     start qcom-post-boot
 
+service hostapd /system/bin/hostapd -dd /data/hostapd/hostapd.conf
+    class late_start
+    user root
+    group root
+    oneshot
+    disabled
+   
 on property:persist.radio.multisim.config=dsds
     stop ril-daemon
     start ril-daemon
@@ -796,11 +806,8 @@ on property:persist.radio.multisim.config=dsds
 # RIL for multi rild
 service ril-daemon1 /vendor/bin/hw/rild -l /system/lib/libsec-ril-dsds.so -c 2
     class main
-    socket rild2 stream 660 radio radio
-    socket rild-debug2 stream 660 radio system
     user radio
-    disabled
-    group radio cache inet misc audio log system drmrpc sdcard_r sdcard_rw shell readproc wakelock
+    group radio cache inet misc audio log readproc wakelock
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh

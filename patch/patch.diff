@@ -27,17 +27,6 @@ diff -ur a/device/samsung/qcom-common/overlay/frameworks/base/core/res/res/value
 +	--> 
  </resources>
 
-diff -ur a/hardware/samsung/Android.mk b/hardware/samsung/Android.mk
---- a/hardware/samsung/Android.mk	Wed Apr 20 08:50:20 2016
-+++ b/hardware/samsung/Android.mk	Thu May 12 01:31:40 2016
-@@ -44,5 +44,5 @@
- include $(SAM_ROOT)/liblights/Android.mk
- include $(SAM_ROOT)/modemloader/Android.mk
- include $(SAM_ROOT)/power/Android.mk
--include $(SAM_ROOT)/ril/Android.mk
-+#include $(SAM_ROOT)/ril/Android.mk
- endif
- 
 diff -ur a/system/core/init/util.cpp b/system/core/init/util.cpp
 --- a/system/core/init/util.cpp	Wed Apr 20 08:50:20 2016
 +++ b/system/core/init/util.cpp	Thu May 12 01:31:40 2016

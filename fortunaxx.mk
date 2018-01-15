@@ -83,6 +83,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
+# Seccomp policy
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:system/vendor/etc/seccomp_policy/mediacodec.policy
+
 # Use cm images if available, aosp ones otherwise
 PRODUCT_PACKAGES += \
     charger_res_images
@@ -90,14 +94,17 @@ PRODUCT_PACKAGES += \
 # Doze
 #PRODUCT_PACKAGES += \
 #    SamsungDoze
+#
+#PRODUCT_PACKAGES += \
+#    FlipFlap
 
+# Launcher3
 PRODUCT_PACKAGES += \
-    FlipFlap
+    Launcher3
 
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
-    audio.a2dp.default \
     audio.primary.msm8916 \
     audio.primary.default \
     audio.r_submix.default \
@@ -105,7 +112,9 @@ PRODUCT_PACKAGES += \
     libaudioresampler \
     libqcompostprocbundle \
     libqcomvisualizer \
-    libqcomvoiceprocessing
+    libqcomvoiceprocessing \
+    libqcomvoiceprocessingdescriptors \
+    libqcompostprocbundle
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
@@ -143,7 +152,7 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     libril_shim \
-	libshim_secril \
+	libshim_secril
 
 # Power
 PRODUCT_PACKAGES += \
@@ -251,7 +260,6 @@ PRODUCT_PACKAGES += \
 
 # Misc. libs
 PRODUCT_PACKAGES += \
-    libstlport \
     libboringssl-compat \
     libssl \
     libcrypto

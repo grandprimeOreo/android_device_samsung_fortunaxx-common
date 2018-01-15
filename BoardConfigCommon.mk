@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-FORCE_32_BIT := true
 
 # Inherit from samsung qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk 
@@ -101,7 +100,7 @@ WIFI_DRIVER_MODULE_NAME          := "wlan"
 #TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Bluetooth
-# BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 BOARD_HAVE_BLUETOOTH                        := true
 BOARD_HAVE_BLUETOOTH_QCOM                   := true
 BLUETOOTH_HCI_USE_MCT                       := true
@@ -119,9 +118,11 @@ EXTENDED_FONT_FOOTPRINT              := true
 MALLOC_SVELTE                        := true
 
 # Audio
-BOARD_USES_ALSA_AUDIO                := true
-#USE_CUSTOM_AUDIO_POLICY             := 1
-TARGET_USES_QCOM_MM_AUDIO            := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_SND_MONITOR := true
+BOARD_USES_ALSA_AUDIO := true
+BOARD_USES_GENERIC_AUDIO := true
+TARGET_USES_QCOM_MM_AUDIO := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND         := true
@@ -169,7 +170,7 @@ TARGET_PROVIDES_LIBLIGHT              := true
 TARGET_QCOM_MEDIA_VARIANT             := caf
 
 # Fm radio
-#BOARD_HAVE_QCOM_FM                    := true
+BOARD_HAVE_QCOM_FM                    := true
 
 # Display
 TARGET_CONTINUOUS_SPLASH_ENABLED      := true
@@ -188,7 +189,7 @@ TARGET_SCREEN_WIDTH                  := 540
 TARGET_SCREEN_HEIGHT                 := 960
 
 # Snapdragon LLVM
-#TARGET_USE_SDCLANG                   := true
+TARGET_USE_SDCLANG                   := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB                := $(LOCAL_PATH)/rootdir/recovery.fstab
@@ -238,7 +239,7 @@ PRODUCT_COPY_FILES                   := $(filter-out frameworks/av/media/libeffe
 #WITH_SU                              := true
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += \
-   device/samsung/fortunaxx-common/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#   device/samsung/fortunaxx-common/sepolicy
