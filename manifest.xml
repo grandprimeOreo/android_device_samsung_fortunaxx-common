@@ -1,64 +1,91 @@
-<manifest version="1.0" type="device">
+<manifest version="1.0" type="framework">
     <hal format="hidl">
-        <name>android.hardware.graphics.allocator</name>
-        <transport arch="32">passthrough</transport>
-        <version>2.0</version>
+        <name>android.frameworks.displayservice</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IDisplayService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.frameworks.schedulerservice</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISchedulingPolicyService</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.frameworks.sensorservice</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISensorManager</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.graphics.composer</name>
+        <transport>hwbinder</transport>
+        <version>2.1</version>
+        <interface>
+            <name>IComposer</name>
+            <instance>vr</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hidl.allocator</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
         <interface>
             <name>IAllocator</name>
-            <instance>default</instance>
+            <instance>ashmem</instance>
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.wifi</name>
+        <name>android.hidl.manager</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
-            <name>IWifi</name>
+            <name>IServiceManager</name>
             <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.wifi.supplicant</name>
-        <transport>hwbinder</transport>
+        <name>android.hidl.memory</name>
+        <transport arch="32+64">passthrough</transport>
         <version>1.0</version>
-        <interface>
-            <name>ISupplicant</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.configstore</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISurfaceFlingerConfigs</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.graphics.mapper</name>
-        <transport arch="32">passthrough</transport>
-        <version>2.0</version>
         <interface>
             <name>IMapper</name>
+            <instance>ashmem</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>android.hidl.token</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ITokenManager</name>
             <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.nfc</name>
-        <transport arch="32">passthrough</transport>
+        <name>android.system.net.netd</name>
+        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
-            <name>INfc</name>
+            <name>INetd</name>
             <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">
-        <name>android.hardware.ir</name>
-        <transport arch="32">passthrough</transport>
+        <name>android.system.wifi.keystore</name>
+        <transport>hwbinder</transport>
         <version>1.0</version>
         <interface>
-            <name>IConsumerIr</name>
+            <name>IKeystore</name>
             <instance>default</instance>
         </interface>
     </hal>
