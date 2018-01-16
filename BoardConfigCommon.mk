@@ -100,10 +100,10 @@ WIFI_DRIVER_MODULE_NAME          := "wlan"
 #TARGET_KERNEL_MODULES += WLAN_MODULES
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-BOARD_HAVE_BLUETOOTH                        := true
-BOARD_HAVE_BLUETOOTH_QCOM                   := true
-BLUETOOTH_HCI_USE_MCT                       := true
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+QCOM_BT_USE_BTNV := true
+BLUETOOTH_HCI_USE_MCT := true
 
 # Custom RIL class
 BOARD_RIL_CLASS                      := ../../../device/samsung/fortunaxx-common/ril/
