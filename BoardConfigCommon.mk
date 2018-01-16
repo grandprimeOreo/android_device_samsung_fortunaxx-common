@@ -131,6 +131,7 @@ BACKLIGHT_PATH                       := "/sys/class/leds/lcd-backlight/brightnes
 CHARGING_ENABLED_PATH                := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_NO_CHARGER_LED                 := true
 BOARD_CHARGER_DISABLE_INIT_BLANK     := true
+BOARD_HAL_STATIC_LIBRARIES           := libhealthd.cm
 
 # Enable QCOM FM feature
 AUDIO_FEATURE_ENABLED_FM             := true
@@ -161,7 +162,11 @@ TARGET_GPS_HAL_PATH                    := device/samsung/fortunaxx-common/gps
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET  := true
 
 # CMHW
-BOARD_HARDWARE_CLASS                 += $(LOCAL_PATH)/cmhw
+BOARD_USES_CYANOGEN_HARDWARE := true
+BOARD_HARDWARE_CLASS :=	$(PLATFORM_PATH)/cmhw
+BOARD_HARDWARE_CLASS +=	\
+	hardware/cyanogen/cmhw \
+	hardware/samsung/cmhw
 
 # Workaround to avoid issues with legacy liblights on QCOM platforms
 TARGET_PROVIDES_LIBLIGHT              := true
