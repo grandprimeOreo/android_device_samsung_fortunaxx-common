@@ -229,6 +229,9 @@ endif
 # HIDL
 DEVICE_MANIFEST_FILE                 := $(LOCAL_PATH)/manifest.xml
 
+# Filesystem
+TARGET_FS_CONFIG_GEN                 := $(LOCAL_PATH)/config.fs
+
 # Misc.
 TARGET_SYSTEM_PROP                   := $(LOCAL_PATH)/system.prop
 
