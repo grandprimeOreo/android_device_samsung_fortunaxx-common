@@ -50,3 +50,20 @@ diff -ur a/system/core/init/util.cpp b/system/core/init/util.cpp
  }
  
  std::ostream& operator<<(std::ostream& os, const Timer& t) {
+
+diff -ur a/hardware/qcom/bt-caf/libbt-vendor/include/bt_vendor_qcom.h b/hardware/qcom/bt-caf/libbt-vendor/include/bt_vendor_qcom.h
+--- a/hardware/qcom/bt-caf/libbt-vendor/include/bt_vendor_qcom.h	Wed Apr 20 08:50:20 2016
++++ b/hardware/qcom/bt-caf/libbt-vendor/include/bt_vendor_qcom.h	Thu May 12 01:31:40 2016
+@@ -44,12 +44,6 @@
+ }bt_soc_type;
+ 
+ typedef enum {
+-    FM_VND_OP_POWER_CTRL = (unsigned int)BT_VND_OP_A2DP_OFFLOAD_STOP + 1,
+-    BT_VND_OP_FM_USERIAL_OPEN,
+-    BT_VND_OP_FM_USERIAL_CLOSE,
+-}bt_fm_serial;
+-
+-typedef enum {
+     BT_VND_OP_ANT_USERIAL_OPEN = 254,
+     BT_VND_OP_ANT_USERIAL_CLOSE
+ }ant_serial;
