@@ -60,7 +60,6 @@ const char* loc_get_name_from_val(const loc_name_val_s_type table[], size_t tabl
 const char* loc_get_msg_q_status(int status);
 const char* loc_get_target_name(unsigned int target);
 
-
 extern const char* log_succ_fail_string(int is_succ);
 
 extern char *loc_get_time(char *time_string, size_t buf_size);
