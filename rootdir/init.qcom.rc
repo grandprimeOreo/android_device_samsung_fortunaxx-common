@@ -802,9 +802,9 @@ on property:persist.radio.multisim.config=dsds
 # RIL for multi rild
 service ril-daemon1 /vendor/bin/hw/rild -l /system/lib/libsec-ril-dsds.so -c 2
     class main
-    user radio
-    group radio cache inet misc audio log readproc oem_2950 wakelock
-    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    user root
+    disabled
+    group radio cache inet misc audio log readproc oem_2950
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
