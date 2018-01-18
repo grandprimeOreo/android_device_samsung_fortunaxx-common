@@ -796,6 +796,7 @@ service ril-daemon1 /vendor/bin/hw/rild -l /system/lib/libsec-ril-dsds.so -c 2
     user root
     disabled
     group radio cache inet misc audio log readproc oem_2950
+	capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
