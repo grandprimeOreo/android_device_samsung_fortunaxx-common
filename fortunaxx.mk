@@ -270,7 +270,6 @@ PRODUCT_PACKAGES += \
     libcurl \
     tcpdump \
     libkeyutils \
-    sockev \
     librmnetctl \
     rmnetcli
 
