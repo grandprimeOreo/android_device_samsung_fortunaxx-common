@@ -257,7 +257,8 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     libril_shim \
-	libshim_secril
+	libshim_secril \
+	rild_socket
 
 # Misc
 PRODUCT_PACKAGES += \
