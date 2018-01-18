@@ -56,14 +56,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:system/etc/media_codecs_google_video_le.xml \
-    $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-    $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/configs/audio/audio_platform_info.xml:system/etc/audio_platform_info.xml \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    $(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+    $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
@@ -73,15 +74,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/prima/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/configs/prima/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/configs/prima/WCNSS_qcom_wlan_nv.bin:system/etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin \
-    $(LOCAL_PATH)/configs/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
+	$(LOCAL_PATH)/configs/hostapd/hostapd.accept:system/etc/hostapd/hostapd.accept \
     $(LOCAL_PATH)/configs/hostapd/hostapd_default.conf:system/etc/hostapd/hostapd_default.conf \
     $(LOCAL_PATH)/configs/hostapd/hostapd.deny:system/etc/hostapd/hostapd.deny \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
-
-# HIDL
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
@@ -91,16 +88,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# Filesystem
+PRODUCT_PACKAGES += \
+    fsck.f2fs \
+    mkfs.f2fs
+
 # Doze
 #PRODUCT_PACKAGES += \
 #    SamsungDoze
-#
-#PRODUCT_PACKAGES += \
-#    FlipFlap
-
-# Launcher3
-PRODUCT_PACKAGES += \
-    Launcher3
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -116,12 +111,6 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessingdescriptors \
     libqcompostprocbundle
 
-PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl \
-    android.hardware.broadcastradio@1.0-impl \
-    android.hardware.soundtrigger@2.0-impl
-
 # TinyAlsa utils
 PRODUCT_PACKAGES += \
     tinyplay \
@@ -129,6 +118,12 @@ PRODUCT_PACKAGES += \
     tinymix \
     tinypcminfo \
     libtinycompress
+
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl \
+    android.hardware.broadcastradio@1.0-impl \
+    android.hardware.soundtrigger@2.0-impl
 
 # Display
 PRODUCT_PACKAGES += \
@@ -148,11 +143,6 @@ PRODUCT_PACKAGES += \
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
-
-# RIL
-PRODUCT_PACKAGES += \
-    libril_shim \
-	libshim_secril
 
 # Power
 PRODUCT_PACKAGES += \
@@ -186,15 +176,27 @@ PRODUCT_PACKAGES += \
 
 # OMX
 PRODUCT_PACKAGES += \
+    libmm-omxcore \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
+    libOmxSwVencMpeg4 \
     libOmxVdec \
+    libOmxVdecHevc \
     libOmxVenc \
+    libOmxVidEnc \
     libOmxVidcCommon \
+    libOmxVdpp \
     libstagefrighthw
+
+# Media
+PRODUCT_PACKAGES += \
+    libextmedia_jni \
+    libdashplayer \
+    libdivxdrmdecrypt \
+    libdrmclearkeyplugin
 
 # FM
 PRODUCT_PACKAGES += \
@@ -203,21 +205,15 @@ PRODUCT_PACKAGES += \
     libqcomfm_jni \
     qcom.fmradio
 
-PRODUCT_BOOT_JARS += \
-    qcom.fmradio
-
 # Bluetooth
 PRODUCT_PACKAGES += \
-	javax.btobex \
-	libbt-vendor \
-	android.hardware.bluetooth@1.0-impl
+    javax.btobex \
+    libbt-vendor \
+    android.hardware.bluetooth@1.0-impl
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.bluetooth.soc=smd \
-    ro.bluetooth.dun=true \
-    ro.bluetooth.hfp.ver=1.7 \
-    ro.bluetooth.sap=true \
     ro.qualcomm.bt.hci_transport=smd
 
 # GPS HAL
@@ -226,9 +222,9 @@ PRODUCT_PACKAGES += \
     gps.msm8916 \
     libshim_gps
 
-# Sensor HAL
+# Connectivity Engine support
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@1.0-impl
+    libcnefeatureconfig
 
 # IPv6 tethering
 PRODUCT_PACKAGES += \
@@ -236,51 +232,53 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
-# Filesystem
+# Sensor HAL
 PRODUCT_PACKAGES += \
-    fsck.f2fs
+    android.hardware.sensors@1.0-impl
 
-# Live Wallpapers
+# WiDi
 PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    librs_jni
+    com.android.media.remotedisplay \
+    com.android.media.remotedisplay.xml
 
-# WCNSS service daemon
+# Wifi
 PRODUCT_PACKAGES += \
-    libwcnss_qmi \
-    wcnss_service
+	hostapd \
+	wificond \
+	iwconfig \
+	hostapd_cli \
+	libwpa_client \
+	libwcnss_qmi \
+	wcnss_service \
+	wpa_supplicant \
+	wpa_supplicant.conf \
+	android.hardware.wifi@1.0-service
+
+# RIL
+PRODUCT_PACKAGES += \
+    libril_shim \
+	libshim_secril
 
 # Misc
 PRODUCT_PACKAGES += \
     libxml2 \
     Stk \
     Stk2 \
-    busybox
+    busybox \
+    curl \
+    libbson \
+    libcurl \
+    tcpdump \
+    libkeyutils \
+    sockev \
+    librmnetctl \
+    rmnetcli
 
 # Misc. libs
 PRODUCT_PACKAGES += \
     libboringssl-compat \
     libssl \
     libcrypto
-
-# SoftAP
-PRODUCT_PACKAGES += \
-    libcurl \
-    wificond \
-    wifilogd
-
-# WiFi HAL
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
-
-# WPA supplicant
-PRODUCT_PACKAGES += \
-    hostapd \
-    libwpa_client \
-    wpa_supplicant \
-    wpa_supplicant.conf
 
 # USB HAL
 PRODUCT_PACKAGES += \
@@ -300,11 +298,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # I/O scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.io.scheduler=bfq
-
-# WiFi Display
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.debug.wfd.enable=1
-    persist.sys.wfd.virtual=0
 
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to

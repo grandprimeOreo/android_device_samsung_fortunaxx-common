@@ -68,6 +68,7 @@ ro.data.large_tcp_window_size=true
 persist.timed.enable=true
 
 # WiDi
+persist.debug.wfd.enable=1
 persist.hwc.enable_vds=1
 persist.sys.wfd.virtual=0
 

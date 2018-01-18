@@ -92,18 +92,11 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME          := "wlan"
 
-#WLAN_MODULES:
-#	mkdir -p $(KERNEL_MODULES_OUT)/pronto
-#	mv $(KERNEL_MODULES_OUT)/wlan.ko $(KERNEL_MODULES_OUT)/pronto/pronto_wlan.ko
-#	ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-
-#TARGET_KERNEL_MODULES += WLAN_MODULES
-
 # Bluetooth
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_QCOM := true
-QCOM_BT_USE_BTNV := true
-BLUETOOTH_HCI_USE_MCT := true
+BOARD_HAVE_BLUETOOTH             := true
+BOARD_HAVE_BLUETOOTH_QCOM        := true
+QCOM_BT_USE_BTNV                 := true
+BLUETOOTH_HCI_USE_MCT            := true
 
 # Custom RIL class
 BOARD_RIL_CLASS                      := ../../../device/samsung/fortunaxx-common/ril/
@@ -118,8 +111,9 @@ EXTENDED_FONT_FOOTPRINT              := true
 MALLOC_SVELTE                        := true
 
 # Audio
-BOARD_USES_ALSA_AUDIO := true
-TARGET_USES_QCOM_MM_AUDIO := true
+BOARD_USES_ALSA_AUDIO                 := true
+#USE_CUSTOM_AUDIO_POLICY               := 1
+TARGET_USES_QCOM_MM_AUDIO             := true
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND         := true
@@ -154,22 +148,21 @@ TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_HAS_LEGACY_CAMERA_HAL1          := true
 TARGET_NEEDS_TEXT_RELOCATIONS          := true
 
+# Media
+TARGET_QCOM_MEDIA_VARIANT             := caf
+TARGET_ENABLE_QC_AV_ENHANCEMENTS      := true
+
 # GPS
 TARGET_GPS_HAL_PATH                    := device/samsung/fortunaxx-common/gps
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET  := true
 
 # CMHW
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS :=	$(PLATFORM_PATH)/cmhw
-BOARD_HARDWARE_CLASS +=	\
-	hardware/cyanogen/cmhw \
-	hardware/samsung/cmhw
+BOARD_USES_CYANOGEN_HARDWARE           := true
+BOARD_HARDWARE_CLASS                   := $(LOCAL_PATH)/cmhw
+BOARD_HARDWARE_CLASS                   += hardware/samsung/cmhw
 
 # Workaround to avoid issues with legacy liblights on QCOM platforms
 TARGET_PROVIDES_LIBLIGHT              := true
-
-# Media
-TARGET_QCOM_MEDIA_VARIANT             := caf
 
 # Fm radio
 BOARD_HAVE_QCOM_FM                    := true
@@ -224,9 +217,6 @@ ifeq ($(RECOVERY_VARIANT),twrp)
     TW_TARGET_USES_QCOM_BSP := false
     TW_THEME := portrait_hdpi
 endif
-
-# Releasetools
-#TARGET_RELEASETOOLS_EXTENSIONS       := $(LOCAL_PATH)
 
 # HIDL
 DEVICE_MANIFEST_FILE                 := $(LOCAL_PATH)/manifest.xml
