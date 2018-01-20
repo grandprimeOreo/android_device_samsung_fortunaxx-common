@@ -60,7 +60,6 @@ TARGET_KERNEL_SOURCE               := kernel/samsung/fortunaxx
 BOARD_KERNEL_IMAGE_NAME            := zImage
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 KERNEL_TOOLCHAIN                   := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin
-BOARD_CUSTOM_BOOTIMG_MK            := hardware/samsung/mkbootimg.mk
 
 # Partition sizes
 TARGET_USERIMAGES_USE_EXT4          := true
@@ -99,11 +98,11 @@ QCOM_BT_USE_BTNV                 := true
 BLUETOOTH_HCI_USE_MCT            := true
 
 # Custom RIL class
-BOARD_RIL_CLASS                      := ../../../device/samsung/fortunaxx-common/ril/
+#BOARD_RIL_CLASS                      := ../../../device/samsung/fortunaxx-common/ril/
 PROTOBUF_SUPPORTED                   := true
 TARGET_RIL_VARIANT                   := caf
-#BOARD_PROVIDES_LIBRIL                := true
-#BOARD_MODEM_TYPE                     := xmm7260
+BOARD_PROVIDES_CASTOM_LIBRIL         := true
+SIM_COUNT                            := 2
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT              := true

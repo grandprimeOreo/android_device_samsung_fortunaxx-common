@@ -54,7 +54,7 @@ on early-init
     chmod 644 /proc/cmdline
 
 on init
-    export LD_SHIM_LIBS /system/vendor/bin/hw/rild|rild_socket.so:/system/lib/libril.so|libril_shim.so:/system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libcrypto.so|libboringssl-compat.so:/system/lib/libsec-ril.so|libshim_secril.so:/system/lib/libsec-ril-dsds.so|libshim_secril.so:/system/vendor/lib/libizat_core.so|libshim_gps.so
+    export LD_SHIM_LIBS /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so:/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libizat_core.so|libshim_gps.so
 
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -791,12 +791,12 @@ on property:persist.radio.multisim.config=dsds
     start ril-daemon1
 
 # RIL for multi rild
-service ril-daemon1 /vendor/bin/hw/rild -l /system/lib/libsec-ril-dsds.so -c 2
+service ril-daemon1 /vendor/bin/hw/rild -l /vendor/lib/libsec-ril-dsds.so -c 2
     class main
-    user root
-    disabled
-    group radio cache inet misc audio log readproc oem_2950
-	capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+    user radio
+	disabled
+    group radio cache inet misc audio log readproc wakelock oem_2901
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
 service hcidump /system/bin/sh /system/etc/hcidump.sh
     user bluetooth
