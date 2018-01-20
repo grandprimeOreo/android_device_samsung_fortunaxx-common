@@ -101,6 +101,9 @@ BLUETOOTH_HCI_USE_MCT                       := true
 # Custom RIL class
 BOARD_RIL_CLASS                      := ../../../device/samsung/fortunaxx-common/ril/
 PROTOBUF_SUPPORTED                   := true
+SIM_COUNT                            := 2
+TARGET_RIL_VARIANT                   := caf
+BOARD_PROVIDES_LIBRIL                := false
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT              := true
