@@ -65,6 +65,11 @@ ro.data.large_tcp_window_size=true
 # Time services
 persist.timed.enable=true
 
+# GPS
+persist.loc.nlp_name=com.qualcomm.location
+persist.gps.qc_nlp_in_use=1
+ro.gps.agps_provider=1
+
 dalvik.vm.dex2oat-flags=--no-watch-dog
 ro.sys.fw.dex2oat_thread_count=4
 #ro.sys.fw.bg_apps_limit=10

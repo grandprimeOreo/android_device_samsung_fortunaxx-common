@@ -1,8 +1,3 @@
-# GPS
-persist.loc.nlp_name=com.qualcomm.location \
-    persist.gps.qc_nlp_in_use=1 \
-    ro.gps.agps_provider=1
-
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.bluetooth.soc=smd \
